@@ -19,6 +19,7 @@ public:
 	bool isFinish();
 	void drawPeople(int, int);
 	bool isDead();
+	void move();
 };
 
 void drawScreen();

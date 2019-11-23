@@ -51,7 +51,43 @@ void CPEOPLE::drawPeople(int x, int y)
 	cout << "  /\\";
 }
 
-void move() {
+void CPEOPLE::move() {
+	mX = screenSizePlay_L / 2 - 1;
+	mY = screenSizePlay_W - 3;
+	drawPeople(mX, mY);
+	while (true)
+	{
+		//cin.ignore();
+		char key = _getch();
+		while (true)
+		{
+			if (key == -32||key=='w')
+			{
+				if (mY <3)
+					break;
+				else {
+					mY -= 3;
+					gotoXY(mX, mY);
+					drawPeople(mX, mY);
+					break;
+				}
+				
+			}
+			if (key == 80||key=='s')
+			{
+				if (mY > screenSizePlay_W-3)
+					break;
+				else {
+					mY += 3;
+					gotoXY(mX, mY);
+					drawPeople(mX, mY);
+					//break;
+				}
+				
+			}
+			
+		}
+	}
 
 }
 bool CPEOPLE::isDead()

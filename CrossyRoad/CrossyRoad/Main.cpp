@@ -12,7 +12,8 @@ int main() {
 	//}
 	drawScreen();
 	CPEOPLE a;
-	a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
+	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
+	a.move();
 	_getch();
 	return 0;
 }

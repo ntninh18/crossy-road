@@ -28,10 +28,10 @@ struct Point {
 #define default_ColorCode		7
 
 
-#define key_Up		1072
-#define key_Down	1080
-#define key_Left	1075
-#define key_Right	1077
+#define key_Up		72
+#define key_Down	80
+#define key_Left	75
+#define key_Right	77
 #define key_none	-1
 
 //--------------------------------------------------------
