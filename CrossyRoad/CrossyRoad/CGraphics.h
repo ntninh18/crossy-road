@@ -6,7 +6,8 @@
 using namespace std;
 //int test();
 string space(int k);
-string draw(int k);
+string block(int k);
 void Text(int x, int y);
+void Menu();
 
 #endif // !GRAPHIC_H_

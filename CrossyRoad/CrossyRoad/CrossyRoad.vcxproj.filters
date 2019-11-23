@@ -27,11 +27,11 @@
     <ClCompile Include="CVehicle.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="CGraphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphics.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
