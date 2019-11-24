@@ -3,7 +3,7 @@
 #define CPEOPLE_H
 #include"Library.h"
 
-const int screenSizePlay_W = 30;
+const int screenSizePlay_W = 32;
 const int screenSizePlay_L = 70;
 class CPEOPLE {
 	int mX, mY;
@@ -20,6 +20,7 @@ public:
 	void drawPeople(int, int);
 	bool isDead();
 	void move();
+	void delPeople(int, int);
 };
 
 void drawScreen();
