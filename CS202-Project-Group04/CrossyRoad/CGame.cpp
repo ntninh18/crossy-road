@@ -33,3 +33,19 @@ CVEHICLE * CGAME::getVehicle()
 	}
 	return ret ;
 }
+
+CANIMAL * CGAME::getAnimal()
+{
+	int numberOfAni = sizeof(akl) + sizeof(ac);
+	CANIMAL * ret = new CANIMAL[numberOfAni];
+	int count = 0;
+	for (count; count < sizeof(akl); count++)
+		ret[count] = akl[count];
+	int countTemp = 0;
+	for (count; count < numberOfAni; count++)
+	{
+		ret[count] = ac[countTemp];
+		countTemp++;
+	}
+	return ret;
+}

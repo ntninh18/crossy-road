@@ -6,8 +6,8 @@ class CANIMAL {
 protected:
 	int mX, mY;
 public:
-	virtual void Move(int, int) = 0;
-	virtual void Tell() = 0;
+	virtual void Move(int, int);
+	virtual void Tell();
 };
 class CDINAUSOR : public CANIMAL {
 public:

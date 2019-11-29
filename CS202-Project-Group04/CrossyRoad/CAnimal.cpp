@@ -21,3 +21,13 @@ void CBIRD::Tell()
 {
 
 }
+
+void CANIMAL::Move(int, int)
+{
+	return;
+}
+
+void CANIMAL::Tell()
+{
+	return;
+}
