@@ -4,6 +4,15 @@ CGAME::CGAME()
 {
 }
 
+CGAME::~CGAME()
+{
+	delete[] axt, axh, akl, ac;
+	axt = nullptr;
+	axh = nullptr;
+	akl = nullptr;
+	ac = nullptr;
+}
+
 CPEOPLE CGAME::getPeople()
 {
 	return cn;
