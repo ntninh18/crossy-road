@@ -5,6 +5,8 @@
 #include "CAnimal.h"
 #include "Console.h"
 #include "CGame.h"
+#include "CPeople.h"
+#include "CVehicle.h"
 class CGAME {
 	CTRUCK* axt;
 	CCAR* axh;

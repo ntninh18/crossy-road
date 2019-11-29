@@ -20,3 +20,8 @@ void CTRUCK::Move(int x, int y)
 	cout << "  O     O";
 
 }
+
+void CVEHICLE::Move(int, int)
+{
+	return;
+}
