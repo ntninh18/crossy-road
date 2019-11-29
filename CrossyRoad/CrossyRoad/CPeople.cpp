@@ -17,8 +17,8 @@ void CPEOPLE::Up()
 void CPEOPLE::Left()
 {
 	mX -= 1;
-	if (mX < 5)
-		mX = 5;
+	if (mX < 1)
+		mX = 1;
 }
 
 void CPEOPLE::Right()
@@ -36,97 +36,91 @@ void CPEOPLE::Down()
 		mX = screenSizePlay_W - 3;
 }
 
-void CPEOPLE::drawPeople(int x, int y)
+
+void CPEOPLE::drawPeople (int x, int y)
 {
-	/*
-	 ()
-	/||\
-	 /\
-	*/
 	gotoXY(x, y);
-	cout << "  ()";
-	gotoXY(x, y + 1);
-	cout << " /||\\";
-	gotoXY(x, y + 2);
-	cout << "  /\\";
+	TextColor(14);
+	cout << (char)157<<(char)157;
+	TextColor(7);
 }
 
-void CPEOPLE::move() {
+void CPEOPLE::move ()
+{
 	mX = screenSizePlay_L / 2 - 1;
-	mY = screenSizePlay_W - 3;
-	drawPeople(mX, mY);
+	mY = screenSizePlay_W -1;
+	drawPeople (mX, mY);
 	while (true)
 	{
 		//cin.ignore();
 		char key = _getch();
 		while (true)
 		{
-			if (key == -32||key=='w')	//di len
+			if (key == -32 || key == 'w')	//di len
 			{
-				if (mY <3)
+				if (mY <= 1)
 					break;
 				else {
-					delPeople(mX, mY);
-					mY -= 4;
+					delPeople (mX, mY);
+					mY -= 1;
 					gotoXY(mX, mY);
-					drawPeople(mX, mY);
+					drawPeople (mX, mY);
 					break;
 				}
-				
+
 			}
-			if (key == 80||key=='s')	//di xuong
+			if (key == 80 || key == 's')	//di xuong
 			{
-				if (mY >= screenSizePlay_W-3)
+				if (mY >= screenSizePlay_W - 1)
 					break;
 				else {
-					delPeople(mX, mY);
-					mY += 4;
+					delPeople (mX, mY);
+					mY += 1;
 					gotoXY(mX, mY);
-					drawPeople(mX, mY);
+					drawPeople (mX, mY);
 					break;
 				}
-				
+
 			}
 			if (key == 75 || key == 'a')	//qua trai
 			{
-				if (mX <= 2)
+				if (mX <= 1)
 					break;
 				else {
-					delPeople(mX, mY);
-					mX -= 2;
+					delPeople (mX, mY);
+					mX -= 1;
 					gotoXY(mX, mY);
-					drawPeople(mX, mY);
+					drawPeople (mX, mY);
 					break;
 				}
 
 			}
 			if (key == 77 || key == 'd')	//qua phai
 			{
-				if (mX >= screenSizePlay_L-4)
+				if (mX > screenSizePlay_L - 2)
 					break;
 				else {
-					delPeople(mX, mY);
-					mX += 2;
+					delPeople (mX, mY);
+					mX += 1;
 					gotoXY(mX, mY);
-					drawPeople(mX, mY);
+					drawPeople (mX, mY);
 					break;
 				}
 
 			}
 			else break;
-			
+
 		}
 	}
 
 }
-void CPEOPLE::delPeople(int x, int y)
+void CPEOPLE::delPeople (int x, int y)
 {
 	gotoXY(x, y);
-	cout << "    ";
-	gotoXY(x, y + 1);
-	cout << "     ";
-	gotoXY(x, y + 2);
-	cout << "    ";
+	if (y % 4 == 0)
+		cout << (char)205 << (char)205;
+	else
+	cout << "  ";
 }
 bool CPEOPLE::isDead()
 {
@@ -166,6 +160,11 @@ void drawScreen()
 		for (int j = 1; j <= screenSizePlay_L; j++)
 			cout << (char)205;
 		cout << (char)185;
+		/*gotoXY(0, i+1);
+		cout << (char)204;
+		for (int j = 1; j <= screenSizePlay_L; j++)
+			cout << (char)205;
+		cout << (char)185;*/
 	}
 	
 }

@@ -8,6 +8,7 @@ const int screenSizePlay_L = 70;
 class CPEOPLE {
 	int mX, mY;
 	bool mState; //Trạng thái sống chết
+	//char **map = nullptr;
 public:
 	CPEOPLE();
 	void Up();
