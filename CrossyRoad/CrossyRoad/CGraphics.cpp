@@ -61,7 +61,6 @@ void Menu()
 		key = _getch();
 		if (key == key_Up)
 		{
-			TextColor(221);
 			gotoXY(x, y);
 			switch (y)
 			{
@@ -71,9 +70,7 @@ void Menu()
 			}
 			y--;
 			if (y < 17)
-			{
 				y = 19;
-			}
 		}
 		else if (key == key_Down)
 		{
@@ -86,21 +83,28 @@ void Menu()
 			}
 			y++;
 			if (y > 19)
-			{
 				y = 17;
-			}
 		}
 		if (y == 17 && key == key_Enter)
 		{
-			
+			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
+			Test();
 		}
 		if (y == 18 && key == key_Enter)
 		{
-
+			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
 		}
 		else if (y == 19 && key == key_Enter)
 		{
-			
+			PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
 		}
 	} while (true);
+}
+void Test() {
+	clrscr();
+	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+	drawScreen();
+	CPEOPLE a;
+	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
+	a.move();
 }

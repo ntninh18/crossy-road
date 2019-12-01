@@ -11,4 +11,5 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <vector>
 using namespace std;
