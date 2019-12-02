@@ -33,6 +33,8 @@ struct Point {
 #define key_Left	75
 #define key_Right	77
 #define key_none	-1
+#define key_Enter   13
+#define key_Esc     27
 
 //--------------------------------------------------------
 
@@ -63,4 +65,3 @@ void DrawFrame(Point positionToDraw, int length, int height, char text[]);
 void FixConsoleWindow();
 void resizeConsole(int width, int height);
 #endif
-
