@@ -3,7 +3,7 @@
 bool File::saveFile(vector<CPEOPLE> people) {
 	ofstream fout;
 	fout.open("save.txt", ios::binary);
-	if (!fout.is_open())
+	if (!fout.is_open()) 
 		return false;
 	int n = people.size();
 	fout << n;
@@ -16,7 +16,7 @@ bool File::saveFile(vector<CPEOPLE> people) {
 bool File::readFile(vector<CPEOPLE> &people) {
 	ifstream fin;
 	fin.open("save.txt", ios::binary);
-	if (!fin.is_open())
+	if (!fin.is_open()) 
 		return false;
 	int n = 0;
 	fin >> n;

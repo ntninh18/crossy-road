@@ -47,8 +47,8 @@ void Menu()
 	Text(30, 5);
 
 	int x = 36, y = 17;
-	gotoXY(x, 17); cout << menu_text[0];
-	gotoXY(x - 1, 18); cout << menu_text[1];
+	gotoXY(x , 17); cout << menu_text[0];
+	gotoXY(x - 1 , 18); cout << menu_text[1];
 	gotoXY(x, 19); cout << menu_text[2];
 	do {
 		gotoXY(x, y);

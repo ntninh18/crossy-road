@@ -7,7 +7,7 @@ class CVEHICLE {
 	int mX, mY;
 public:
 	virtual void Move(int, int) = 0;
-	//...
+	// ...
 };
 class CTRUCK : public CVEHICLE {
 public:

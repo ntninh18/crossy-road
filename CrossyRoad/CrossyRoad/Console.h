@@ -65,3 +65,4 @@ void DrawFrame(Point positionToDraw, int length, int height, char text[]);
 void FixConsoleWindow();
 void resizeConsole(int width, int height);
 #endif
+
