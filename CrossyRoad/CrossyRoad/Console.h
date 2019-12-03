@@ -64,5 +64,6 @@ void clearScn();
 void DrawFrame(Point positionToDraw, int length, int height, char text[]);
 void FixConsoleWindow();
 void resizeConsole(int width, int height);
+void setTextColor(int color);
 #endif
 
