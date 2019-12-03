@@ -7,6 +7,12 @@ void CDINOSAUR::Move(int x, int y)
 void CBIRD::Move(int, int)
 {
 }
+/*
+  /\
+(  o)>  ( _o)>  (  o)>
+				  \/
+*/
+
 void CBIRD::Draw(int x, int y, bool direction) {
 	if (direction) {
 		gotoXY(x - 3, y);
@@ -18,8 +24,8 @@ void CBIRD::Draw(int x, int y, bool direction) {
 			cout << "/\\ ";
 		}
 		else if (temp % 3 == 1) {
-			gotoXY(x - 1, y);
-			cout << "__";
+			gotoXY(x - 2, y);
+			cout << " _";
 		}
 		else {
 			gotoXY(x - 1, y + 1);
@@ -33,15 +39,15 @@ void CBIRD::Draw(int x, int y, bool direction) {
 		int temp = x % 3;
 		if (temp % 3 == 0) {
 			gotoXY(x - 1, y - 1);
-			cout << "/\\ ";
+			cout << " /\\ ";
 		}
 		else if (temp % 3 == 1) {
-			gotoXY(x - 1, y);
-			cout << "__";
+			gotoXY(x , y);
+			cout << "_ ";
 		}
 		else {
 			gotoXY(x - 1, y + 1);
-			cout << "\\/ ";
+			cout << " \\/ ";
 		}
 	}
 }

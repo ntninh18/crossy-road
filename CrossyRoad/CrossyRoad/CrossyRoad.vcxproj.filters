@@ -36,6 +36,9 @@
     <ClCompile Include="File.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimal.h">
