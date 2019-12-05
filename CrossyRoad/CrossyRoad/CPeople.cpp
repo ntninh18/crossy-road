@@ -36,31 +36,31 @@ void CPEOPLE::Down()
 		mX = screenSizePlay_W - 3;
 }
 
-bool CPEOPLE::isImpact(const CVEHICLE *&vehicle)
-{
-	if (mY != vehicle[0].mY)
-		return false;
-	for (int i = 0; i < level; i++) {
-		if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
-			mState = false;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool CPEOPLE::isImpact(const CANIMAL *&animal)
-{
-	if (mY != animal[0].mY)
-		return false;
-	for (int i = 0; i < level; i++) {
-		if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
-			mState = false;
-			return true;
-		}
-	}
-	return false;
-}
+//bool CPEOPLE::isImpact(const CVEHICLE *&vehicle)
+//{
+//	if (mY != vehicle[0].mY)
+//		return false;
+//	for (int i = 0; i < level; i++) {
+//		if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
+//			mState = false;
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//bool CPEOPLE::isImpact(const CANIMAL *&animal)
+//{
+//	if (mY != animal[0].mY)
+//		return false;
+//	for (int i = 0; i < level; i++) {
+//		if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
+//			mState = false;
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
 bool CPEOPLE::isFinish()
 {
@@ -199,11 +199,69 @@ void drawScreen()
 		for (int j = 1; j <= screenSizePlay_L; j++)
 			cout << (char)196;
 		cout << (char)182;
-		/*gotoXY(0, i+1);
-		cout << (char)204;
-		for (int j = 1; j <= screenSizePlay_L; j++)
-			cout << (char)205;
-		cout << (char)185;*/
 	}
 
 }
+class Point {
+public:
+	int x = 0;
+	int y = 0;
+};
+class CTRAFFIC {
+	bool greenLight;
+	static int numTraffic;
+	Point pos;
+	const int prob[2] = { 75,75 };
+public:
+	CTRAFFIC(Point p) { 
+		++numTraffic; greenLight = true; 
+		pos = p; 
+		gotoXY(pos.x, pos.y);  
+		drawTrafficLight(); 
+	}
+	CTRAFFIC(const CTRAFFIC& src) {
+		++numTraffic; 
+		greenLight = src.greenLight; 
+		pos = src.pos;
+		gotoXY(pos.x, pos.y); 
+		drawTrafficLight();
+	}
+	void drawTrafficLight() { 
+		if (greenLight)
+		{
+			TextColor(ColorCode_Green);
+			cout << char(220);
+			TextColor(default_ColorCode);
+		}
+		else { 
+			TextColor(ColorCode_Red);
+			cout << char(220);
+			TextColor(default_ColorCode);
+		}
+	}
+	void green() {
+		greenLight = true;
+		gotoXY(pos.x, pos.y), drawTrafficLight();
+	}
+	void red() {
+		int a = 0, b = 400;
+		srand(time(NULL));
+		int rRedTime = rand() % (b - a + 1) + a;	//tu a den b
+
+		greenLight = false; 
+		gotoXY(pos.x, pos.y), drawTrafficLight();
+		//Sleep(500);
+	}
+	void toggle(int i) {
+		srand(time(NULL));
+		greenLight = (rand() % 100) < prob[i];
+		if (!greenLight)red(); else green();
+	}
+
+	~CTRAFFIC() { --numTraffic; }
+
+	bool isGreen() 
+	{ 
+		return greenLight; 
+	}
+};
