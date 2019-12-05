@@ -100,8 +100,8 @@ void CGAME::resetGame()
 		{
 			for (int j = 0; j < MAX_CAR_LENGTH; j++)
 			{
-				tsleep(speed);
-				axt[i].Move(1 + j, 1 + i);
+				Sleep(50 * (6 - speed));
+				axt[i].Move(1 + j, 1 );
 			}
 		}
 
@@ -114,7 +114,7 @@ void CGAME::resetGame()
 void CGAME::exitGame(HANDLE t)
 {
 	TerminateThread(t, 0);
-	~CGAME();
+	//~CGAME();
 	exit(1);
 }
 
@@ -124,16 +124,4 @@ void CGAME::startGame()
 	cn.changeState(true);
 }
 
-void tsleep(int x)
-{
 
-	time_t  ttime;
-	long v = time(&ttime);
-	while (true) {
-		if (time(&ttime) - v == x) {  //check with the diff
-			v = time(&ttime);  // update v to the current time
-			break;  //once the check is true then break
-		}
-	}
-
-}

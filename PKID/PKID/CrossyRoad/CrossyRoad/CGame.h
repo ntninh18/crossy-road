@@ -9,7 +9,7 @@
 
 
 #define MAX_CAR 10
-#define MAX_SPEED 3
+#define MAX_SPEED 5
 #define MAX_CAR_LENGTH 60
 #define WIDTH_CONSOLE 100
 #define HEIGH_CONSOLE 20
@@ -40,6 +40,5 @@ public:
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
 };
-void tsleep(int x);
 
 #endif
