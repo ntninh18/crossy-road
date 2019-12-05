@@ -162,6 +162,10 @@ void CPEOPLE::delPeople(int x, int y)
 	else
 		cout << " ";
 }
+void CPEOPLE::changeState(bool x)
+{
+	mState = x;
+}
 bool CPEOPLE::isDead()
 {
 	if (mState == 0)

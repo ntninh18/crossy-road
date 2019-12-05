@@ -1,5 +1,5 @@
 #include "CGraphics.h"
-
+#include "CGame.h"
 string space(int k)
 {
 	string ret = "";
@@ -89,6 +89,7 @@ void Menu()
 		{
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			Test();
+			
 		}
 		if (y == 18 && key == key_Enter)
 		{
@@ -100,11 +101,14 @@ void Menu()
 		}
 	} while (true);
 }
+
 void Test() {
 	clrscr();
 	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
 	drawScreen();
 	CPEOPLE a;
 	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
-	a.move();
+	//a.move();
+	CGAME m;
+	m.resetGame();
 }

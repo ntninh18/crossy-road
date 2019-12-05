@@ -2,6 +2,7 @@
 #ifndef CGAME_H
 #define CGAME_H
 #include "Library.h"
+#include <Windows.h>
 #include <time.h>
 #include <thread>
 #include <conio.h>
@@ -9,7 +10,7 @@
 
 #define MAX_CAR 10
 #define MAX_SPEED 3
-#define MAX_CAR_LENGTH 40
+#define MAX_CAR_LENGTH 60
 #define WIDTH_CONSOLE 100
 #define HEIGH_CONSOLE 20
 class CGAME {
@@ -39,5 +40,6 @@ public:
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
 };
+void tsleep(int x);
 
 #endif

@@ -4,9 +4,11 @@
 #include "Library.h"
 
 class CVEHICLE {
+protected:
 	int mX, mY;
 public:
 	virtual void Move(int, int);
+	friend class CPEOPLE;
 	// ...
 };
 class CTRUCK : public CVEHICLE {

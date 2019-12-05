@@ -8,6 +8,7 @@ protected:
 public:
 	virtual void Move(int, int);
 	virtual void Tell();
+	friend class CPEOPLE;
 };
 class CDINOSAUR : public CANIMAL {
 public:

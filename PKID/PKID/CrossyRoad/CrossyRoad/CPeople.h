@@ -24,6 +24,7 @@ public:
 	bool isDead();
 	void move();
 	void delPeople(int, int);
+	void changeState(bool);
 };
 
 void drawScreen();

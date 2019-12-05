@@ -75,7 +75,7 @@ CANIMAL * CGAME::getAnimal()
 void CGAME::resetGame()
 {
 	cn.Right();
-	speed = 1;	//Toc do dau game
+	speed = 3;	//Toc do dau game
 	//Mang Xe
 	if (axt == nullptr && axh == nullptr && akl == nullptr && ac == nullptr)
 	{
@@ -85,20 +85,55 @@ void CGAME::resetGame()
 		axh = new CCAR[car];
 		int dino = rand() % (MAX_CAR - truck - car);
 		akl = new CDINOSAUR[dino];
-		int bird = rand() % (MAX_CAR - truck - car - bird);
+		int bird = rand() % (MAX_CAR - truck - car - dino);
 		ac = new CBIRD[bird];
 
-		for (int i = 0; i < MAX_CAR; i++)
+		//for (int i = 0; i < MAX_CAR; i++)
+		//{
+		//	int temp = (rand() % (WIDTH_CONSOLE - MAX_CAR_LENGTH)) + 1;
+		//	for (int j = 0; j < MAX_CAR_LENGTH; j++)
+		//	{
+		//		axt[i].Move(temp + j, 1 + i);
+		//	}
+		//}
+		for (int i = 0; i < truck; i++)
 		{
-			int temp = (rand() % (WIDTH_CONSOLE - MAX_CAR_LENGTH)) + 1;
 			for (int j = 0; j < MAX_CAR_LENGTH; j++)
 			{
-				axt[i].Move(temp + j, 2 + i);
+				tsleep(speed);
+				axt[i].Move(1 + j, 1 + i);
 			}
 		}
 
 	}
 	//currpos[0] = NULL; currpos[1] = NULL;
 	system("cls");
-	drawBoard(0, 0, WIDTH_CONSOLE, HEIGH_CONSOLE);
+	//drawBoard(0, 0, WIDTH_CONSOLE, HEIGH_CONSOLE);
+}
+
+void CGAME::exitGame(HANDLE t)
+{
+	TerminateThread(t, 0);
+	~CGAME();
+	exit(1);
+}
+
+void CGAME::startGame()
+{
+	resetGame();
+	cn.changeState(true);
+}
+
+void tsleep(int x)
+{
+
+	time_t  ttime;
+	long v = time(&ttime);
+	while (true) {
+		if (time(&ttime) - v == x) {  //check with the diff
+			v = time(&ttime);  // update v to the current time
+			break;  //once the check is true then break
+		}
+	}
+
 }
