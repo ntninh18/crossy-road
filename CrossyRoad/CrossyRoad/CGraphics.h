@@ -9,7 +9,7 @@ using namespace std;
 string space(int k);
 string block(int k);
 void Text(int x, int y);
-void Menu(CGAME& cg, int& K);
+void Menu();
 void Test();
 
 #endif // !GRAPHIC_H_
