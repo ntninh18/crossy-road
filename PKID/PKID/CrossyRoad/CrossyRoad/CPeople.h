@@ -25,6 +25,7 @@ public:
 	void move();
 	void delPeople(int, int);
 	void changeState(bool);
+	void move(int m);
 };
 
 void drawScreen();

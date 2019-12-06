@@ -166,6 +166,63 @@ void CPEOPLE::changeState(bool x)
 {
 	mState = x;
 }
+void CPEOPLE::move(int m)
+{
+	int key = m;
+	if (key == key_Up || key == 'w')	//di len
+	{
+		if (mY <= 1)
+			return;
+		else {
+			delPeople(mX, mY);
+			mY -= 1;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Down || key == 's')	//di xuong
+	{
+		if (mY >= screenSizePlay_W - 1)
+			return;
+		else {
+			delPeople(mX, mY);
+			mY += 1;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Left || key == 'a')	//qua trai
+	{
+		if (mX <= 1)
+			return;
+		else {
+			delPeople(mX, mY);
+			mX -= 1;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Right || key == 'd')	//qua phai
+	{
+		if (mX > screenSizePlay_L - 2)
+			return;
+		else {
+			delPeople(mX, mY);
+			mX += 1;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+	}
+	if (key == key_Esc) Menu();
+	else return;
+}
 bool CPEOPLE::isDead()
 {
 	if (mState == 0)

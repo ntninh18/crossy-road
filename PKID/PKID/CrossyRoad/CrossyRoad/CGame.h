@@ -6,7 +6,7 @@
 #include <time.h>
 #include <thread>
 #include <conio.h>
-
+#include <vector>
 
 #define MAX_CAR 10
 #define MAX_SPEED 5
@@ -14,10 +14,12 @@
 #define WIDTH_CONSOLE 100
 #define HEIGH_CONSOLE 20
 class CGAME {
-	CTRUCK* axt;
-	CCAR* axh;
-	CDINOSAUR* akl;
-	CBIRD* ac;
+	//CTRUCK* axt;
+	//CCAR* axh;
+	//CDINOSAUR* akl;
+	//CBIRD* ac;
+	vector<CVEHICLE*> veh;
+	vector <CANIMAL*> ani;
 	CPEOPLE cn;
 	bool pause;	//state of game: do stop?
 	int speed;
@@ -27,8 +29,8 @@ public:
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
 	~CGAME(); // Hủy tài nguyên đã cấp phát
 	CPEOPLE getPeople();//Lấy thông tin người
-	CVEHICLE* getVehicle();//Lấy danh sách các xe
-	CANIMAL* getAnimal(); //Lấy danh sách các thú
+	vector<CVEHICLE*> getVehicle();//Lấy danh sách các xe
+	vector <CANIMAL*> getAnimal(); //Lấy danh sách các thú
 	void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
 	void exitGame(HANDLE); // Thực hiện thoát Thread
 	void startGame(); // Thực hiện bắt đầu vào trò chơi
@@ -39,6 +41,7 @@ public:
 	void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
+	bool getPause();
 };
 
 #endif
