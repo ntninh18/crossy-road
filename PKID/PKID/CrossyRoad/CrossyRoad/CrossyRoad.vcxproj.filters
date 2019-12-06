@@ -56,13 +56,13 @@
     <ClInclude Include="CVehicle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

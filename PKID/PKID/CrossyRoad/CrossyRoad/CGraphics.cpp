@@ -1,5 +1,28 @@
 #include "CGraphics.h"
 #include "CGame.h"
+bool isRun = true;
+int KEY = NULL;
+CGAME cg;
+void subThread()
+{
+	while (isRun) {
+		if (!cg.getPause()) {
+			if (KEY != NULL) {
+				cg.updatePosPeople(KEY);
+				KEY = NULL;
+			}
+			cg.updatePosVehicle();
+			cg.updatePosAnimal();
+			if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
+				isRun = false;
+			}
+		}
+		Sleep(25);
+
+	}
+}
+
+
 string space(int k)
 {
 	string ret = "";
@@ -39,7 +62,7 @@ void Text(int x, int y) {
 	gotoXY(x, y + 19); cout << space(9) << block(2) << space(5) << block(5) << space(3) << block(4) << space(1) << block(2) << space(1) << block(6) << endl;
 }
 
-void Menu(CGAME& cg, int& K)
+void Menu()
 {
 	int key;
 	char menu_text[3][100] = { "NEW GAME","LOAD GAME","SETTINGS" };
@@ -47,8 +70,8 @@ void Menu(CGAME& cg, int& K)
 	Text(30, 5);
 
 	int x = 36, y = 17;
-	gotoXY(x , 17); cout << menu_text[0];
-	gotoXY(x - 1 , 18); cout << menu_text[1];
+	gotoXY(x, 17); cout << menu_text[0];
+	gotoXY(x - 1, 18); cout << menu_text[1];
 	gotoXY(x, 19); cout << menu_text[2];
 	do {
 		gotoXY(x, y);
@@ -90,14 +113,17 @@ void Menu(CGAME& cg, int& K)
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
 			cg.startGame();
+			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+
+			thread t(subThread);
 			while (true)
 			{
 				int temp = _getch();
-				K = temp;
+				KEY = temp;
 
 			}
 
-			
+
 		}
 		if (y == 18 && key == key_Enter)
 		{
@@ -109,6 +135,7 @@ void Menu(CGAME& cg, int& K)
 		}
 	} while (true);
 }
+
 
 void Test() {
 	clrscr();

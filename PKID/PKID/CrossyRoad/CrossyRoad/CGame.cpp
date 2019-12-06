@@ -3,16 +3,25 @@
 CGAME::CGAME()
 {
 	cn = new CPEOPLE;
-	CVEHICLE* temp = new CCAR;
+	CVEHICLE* temp = new CCAR(30, 17);
 	veh.push_back(temp);
-	temp = new CCAR;
+	temp = new CCAR(15,21);
 	veh.push_back(temp);
-	temp = new CCAR;
+	temp = new CCAR(3, 9);
 	veh.push_back(temp);
-	temp = new CTRUCK;
+	temp = new CTRUCK(60, 5);
 	veh.push_back(temp);
-	temp = new CTRUCK;
+	temp = new CTRUCK(30, 5);
 	veh.push_back(temp);
+
+	temp = new CTRUCK(25,1);
+	veh.push_back(temp);
+	CANIMAL* tempA = new CBIRD(40, 25);
+	ani.push_back(tempA);
+	tempA = new CDINOSAUR(69,13);
+	ani.push_back(tempA);
+
+
 
 }
 
@@ -40,6 +49,8 @@ void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curP
 
 void CGAME::drawGame()
 {
+	cn->drawPeople(cn->mX, cn->mY);
+	system("cls");
 	gotoXY(0, 0);
 	cout << (char)201;
 	for (int i = 0; i < screenSizePlay_L; i++) {
@@ -175,10 +186,8 @@ void CGAME::startGame()
 	//resetGame();
 	//cn.changeState(true);
 	cn = new CPEOPLE;
-	cn->mX = 0;
-	cn->mY = 0;
+
 	cn->mState = true;
-	cn->level = 1;
 	cn->changeState(true);
 	pause = false;
 	drawGame();
@@ -202,13 +211,20 @@ void CGAME::updatePosPeople(char mov)
 void CGAME::updatePosVehicle()
 {
 	for (int i = 0; i < veh.size(); i++)
+	{
 		veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
+		Sleep(25);
+	}
 }
 
 void CGAME::updatePosAnimal()
 {
 	for (int i = 0; i < ani.size(); i++)
+	{
 		ani[i]->Move(ani[i]->mX + 1, ani[i]->mY);
+		Sleep(25);
+
+	}
 }
 
 bool CGAME::getPause()
