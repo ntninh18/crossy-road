@@ -36,31 +36,43 @@ void CPEOPLE::Down()
 		mX = screenSizePlay_W - 3;
 }
 
-//bool CPEOPLE::isImpact(const CVEHICLE *&vehicle)
-//{
-//	if (mY != vehicle[0].mY)
-//		return false;
-//	for (int i = 0; i < level; i++) {
-//		if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
-//			mState = false;
-//			return true;
-//		}
-//	}
-//	return false;
-//}
-//
-//bool CPEOPLE::isImpact(const CANIMAL *&animal)
-//{
-//	if (mY != animal[0].mY)
-//		return false;
-//	for (int i = 0; i < level; i++) {
-//		if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
-//			mState = false;
-//			return true;
-//		}
-//	}
-//	return false;
-//}
+bool CPEOPLE::isImpact(const vector<CVEHICLE *>&vehicle)
+{
+	//if (mY != vehicle[0].mY)
+	//	return false;
+	//for (int i = 0; i < level; i++) {
+	//	if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
+	//		mState = false;
+	//		return true;
+	//	}
+	//}
+	//return false;
+	for (int i =0; i< vehicle.size(); i++)
+	{
+		if (vehicle[i]->mX = mX && vehicle[i]->mY == mY)
+			return true;
+	}
+	return false;
+}
+
+bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
+{
+	//if (mY != animal[0].mY)
+	//	return false;
+	//for (int i = 0; i < level; i++) {
+	//	if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
+	//		mState = false;
+	//		return true;
+	//	}
+	//}
+	//return false;
+	for (int i = 0; i < animal.size(); i++)
+	{
+		if (animal[i]->mX = mX && animal[i]->mY == mY)
+			return true;
+	}
+	return false;
+}
 
 bool CPEOPLE::isFinish()
 {
@@ -147,7 +159,7 @@ void CPEOPLE::move()
 					break;
 				}
 			}
-			if (key == key_Esc) Menu();
+			//if (key == key_Esc) Menu(cg, KEY);
 			else break;
 
 		}
@@ -157,10 +169,72 @@ void CPEOPLE::move()
 void CPEOPLE::delPeople(int x, int y)
 {
 	gotoXY(x, y);
-	if (y % 4 == 0)
-		cout << (char)196;
-	else
-		cout << " ";
+	cout << "    ";
+	gotoXY(x, y + 1);
+	cout << "     ";
+	gotoXY(x, y + 2);
+	cout << "    ";
+}
+void CPEOPLE::changeState(bool x)
+{
+	mState = x;
+}
+void CPEOPLE::move(int m)
+{
+	int key = m;
+	if (key == key_Up || key == 'w')	//di len
+	{
+		if (mY <3)
+			return;
+		else {
+			delPeople(mX, mY);
+			mY -= 4;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Down || key == 's')	//di xuong
+	{
+		if (mY >= screenSizePlay_W - 3)
+			return;
+		else {
+			delPeople(mX, mY);
+			mY += 4;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Left || key == 'a')	//qua trai
+	{
+		if (mX <= 2)
+			return;
+		else {
+			delPeople(mX, mY);
+			mX -= 2;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+
+	}
+	if (key == key_Right || key == 'd')	//qua phai
+	{
+		if (mX >= screenSizePlay_L - 4)
+			return;
+		else {
+			delPeople(mX, mY);
+			mX += 2;
+			gotoXY(mX, mY);
+			drawPeople(mX, mY);
+			return;
+		}
+	}
+	//if (key == key_Esc) Menu();
+	else return;
 }
 bool CPEOPLE::isDead()
 {
@@ -199,69 +273,11 @@ void drawScreen()
 		for (int j = 1; j <= screenSizePlay_L; j++)
 			cout << (char)196;
 		cout << (char)182;
+		/*gotoXY(0, i+1);
+		cout << (char)204;
+		for (int j = 1; j <= screenSizePlay_L; j++)
+			cout << (char)205;
+		cout << (char)185;*/
 	}
 
 }
-class Point {
-public:
-	int x = 0;
-	int y = 0;
-};
-class CTRAFFIC {
-	bool greenLight;
-	static int numTraffic;
-	Point pos;
-	const int prob[2] = { 75,75 };
-public:
-	CTRAFFIC(Point p) { 
-		++numTraffic; greenLight = true; 
-		pos = p; 
-		gotoXY(pos.x, pos.y);  
-		drawTrafficLight(); 
-	}
-	CTRAFFIC(const CTRAFFIC& src) {
-		++numTraffic; 
-		greenLight = src.greenLight; 
-		pos = src.pos;
-		gotoXY(pos.x, pos.y); 
-		drawTrafficLight();
-	}
-	void drawTrafficLight() { 
-		if (greenLight)
-		{
-			TextColor(ColorCode_Green);
-			cout << char(220);
-			TextColor(default_ColorCode);
-		}
-		else { 
-			TextColor(ColorCode_Red);
-			cout << char(220);
-			TextColor(default_ColorCode);
-		}
-	}
-	void green() {
-		greenLight = true;
-		gotoXY(pos.x, pos.y), drawTrafficLight();
-	}
-	void red() {
-		int a = 0, b = 400;
-		srand(time(NULL));
-		int rRedTime = rand() % (b - a + 1) + a;	//tu a den b
-
-		greenLight = false; 
-		gotoXY(pos.x, pos.y), drawTrafficLight();
-		//Sleep(500);
-	}
-	void toggle(int i) {
-		srand(time(NULL));
-		greenLight = (rand() % 100) < prob[i];
-		if (!greenLight)red(); else green();
-	}
-
-	~CTRAFFIC() { --numTraffic; }
-
-	bool isGreen() 
-	{ 
-		return greenLight; 
-	}
-};
