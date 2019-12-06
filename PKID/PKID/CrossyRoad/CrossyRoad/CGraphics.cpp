@@ -39,7 +39,7 @@ void Text(int x, int y) {
 	gotoXY(x, y + 19); cout << space(9) << block(2) << space(5) << block(5) << space(3) << block(4) << space(1) << block(2) << space(1) << block(6) << endl;
 }
 
-void Menu()
+void Menu(CGAME& cg, int& K)
 {
 	int key;
 	char menu_text[3][100] = { "NEW GAME","LOAD GAME","SETTINGS" };
@@ -88,7 +88,15 @@ void Menu()
 		if (y == 17 && key == key_Enter)
 		{
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
-			Test();
+			//Test();
+			cg.startGame();
+			while (true)
+			{
+				int temp = _getch();
+				K = temp;
+
+			}
+
 			
 		}
 		if (y == 18 && key == key_Enter)

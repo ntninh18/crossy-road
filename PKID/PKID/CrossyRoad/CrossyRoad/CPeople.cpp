@@ -36,28 +36,40 @@ void CPEOPLE::Down()
 		mX = screenSizePlay_W - 3;
 }
 
-bool CPEOPLE::isImpact(const CVEHICLE *&vehicle)
+bool CPEOPLE::isImpact(const vector<CVEHICLE *>&vehicle)
 {
-	if (mY != vehicle[0].mY)
-		return false;
-	for (int i = 0; i < level; i++) {
-		if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
-			mState = false;
+	//if (mY != vehicle[0].mY)
+	//	return false;
+	//for (int i = 0; i < level; i++) {
+	//	if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
+	//		mState = false;
+	//		return true;
+	//	}
+	//}
+	//return false;
+	for (int i =0; i< vehicle.size(); i++)
+	{
+		if (vehicle[i]->mX = mX && vehicle[i]->mY == mY)
 			return true;
-		}
 	}
 	return false;
 }
 
-bool CPEOPLE::isImpact(const CANIMAL *&animal)
+bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 {
-	if (mY != animal[0].mY)
-		return false;
-	for (int i = 0; i < level; i++) {
-		if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
-			mState = false;
+	//if (mY != animal[0].mY)
+	//	return false;
+	//for (int i = 0; i < level; i++) {
+	//	if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
+	//		mState = false;
+	//		return true;
+	//	}
+	//}
+	//return false;
+	for (int i = 0; i < animal.size(); i++)
+	{
+		if (animal[i]->mX = mX && animal[i]->mY == mY)
 			return true;
-		}
 	}
 	return false;
 }
@@ -147,7 +159,7 @@ void CPEOPLE::move()
 					break;
 				}
 			}
-			if (key == key_Esc) Menu();
+			//if (key == key_Esc) Menu(cg, KEY);
 			else break;
 
 		}
@@ -220,7 +232,7 @@ void CPEOPLE::move(int m)
 			return;
 		}
 	}
-	if (key == key_Esc) Menu();
+	//if (key == key_Esc) Menu();
 	else return;
 }
 bool CPEOPLE::isDead()

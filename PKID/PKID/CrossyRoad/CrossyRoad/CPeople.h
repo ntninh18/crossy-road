@@ -1,8 +1,11 @@
 ﻿#pragma once
 #ifndef CPEOPLE_H
 #define CPEOPLE_H
-#include"Library.h"
-
+//#include"Library.h"
+#include "CGame.h"
+#include "CAnimal.h"
+#include "CVehicle.h"
+using namespace std;
 const int screenSizePlay_W = 32;
 const int screenSizePlay_L = 70;
 
@@ -16,8 +19,8 @@ public:
 	void Left();
 	void Right();
 	void Down();
-	bool isImpact(const CVEHICLE*&);
-	bool isImpact(const CANIMAL*&);
+	bool isImpact(const vector<CVEHICLE*>& vihecle);
+	bool isImpact(const vector<CANIMAL*>& animal);
 	bool isFinish();
 	void increaseLevel();
 	void drawPeople(int, int);
@@ -26,6 +29,7 @@ public:
 	void delPeople(int, int);
 	void changeState(bool);
 	void move(int m);
+	friend class CGAME;
 };
 
 void drawScreen();

@@ -2,39 +2,40 @@
 
 CGAME::CGAME()
 {
-		CVEHICLE* temp = new CCAR;
-		veh.push_back(temp);
-		temp = new CCAR;
-		veh.push_back(temp);
-		temp = new CCAR;
-		veh.push_back(temp);
-		temp = new CTRUCK;
-		veh.push_back(temp);
-		temp = new CTRUCK;
-		veh.push_back(temp);
+	cn = new CPEOPLE;
+	CVEHICLE* temp = new CCAR;
+	veh.push_back(temp);
+	temp = new CCAR;
+	veh.push_back(temp);
+	temp = new CCAR;
+	veh.push_back(temp);
+	temp = new CTRUCK;
+	veh.push_back(temp);
+	temp = new CTRUCK;
+	veh.push_back(temp);
 
 }
 
 void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
 {
-	gotoXY(x, y);
-	cout << "X";
-	for (int i = 1; i < width; i++)
-		cout << "X";
-	cout << "X";
-	gotoXY(x, height + y);
-	cout << "X";
-	for (int i = 1; i < height; i++)
-		cout << "X";
-	cout << "X";
-	for (int i = y + 1; i < height + y; i++)
-	{
-		gotoXY(x, i);
-		cout << "X";
-		gotoXY(x + width, i);
-		cout << "X";
-	}
-	gotoXY(curPosX, curPosY);
+	//gotoXY(x, y);
+	//cout << "X";
+	//for (int i = 1; i < width; i++)
+	//	cout << "X";
+	//cout << "X";
+	//gotoXY(x, height + y);
+	//cout << "X";
+	//for (int i = 1; i < height; i++)
+	//	cout << "X";
+	//cout << "X";
+	//for (int i = y + 1; i < height + y; i++)
+	//{
+	//	gotoXY(x, i);
+	//	cout << "X";
+	//	gotoXY(x + width, i);
+	//	cout << "X";
+	//}
+	//gotoXY(curPosX, curPosY);
 }
 
 void CGAME::drawGame()
@@ -84,7 +85,7 @@ CGAME::~CGAME()
 	//ac = nullptr;
 }
 
-CPEOPLE CGAME::getPeople()
+CPEOPLE* CGAME::getPeople()
 {
 	return cn;
 }
@@ -173,7 +174,12 @@ void CGAME::startGame()
 {
 	//resetGame();
 	//cn.changeState(true);
-	cn.changeState(true);
+	cn = new CPEOPLE;
+	cn->mX = 0;
+	cn->mY = 0;
+	cn->mState = true;
+	cn->level = 1;
+	cn->changeState(true);
 	pause = false;
 	drawGame();
 }
@@ -190,7 +196,7 @@ void CGAME::resumeGame(HANDLE)
 
 void CGAME::updatePosPeople(char mov)
 {
-	cn.move(mov);
+	cn->move(mov);
 }
 
 void CGAME::updatePosVehicle()
@@ -209,5 +215,7 @@ bool CGAME::getPause()
 {
 	return pause;
 }
+
+
 
 
