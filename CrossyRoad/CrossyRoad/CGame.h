@@ -24,12 +24,12 @@ class CGAME {
 	vector<CANIMAL*> ani;
 public:
 	CGAME(); //Chuẩn bị dữ liệu cho tất cả các đối tượng
-	void drawBoard(int x, int y, int width, int height, int curPosX = 0, int curPosY = 0);
+	//void drawBoard(int x, int y, int width, int height, int curPosX = 0, int curPosY = 0);
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
 	~CGAME(); // Hủy tài nguyên đã cấp phát
 	CPEOPLE* getPeople();//Lấy thông tin người
-	vector<CVEHICLE*> getVehicle();//Lấy danh sách các xe
-	vector <CANIMAL*> getAnimal(); //Lấy danh sách các thú
+	vector<CVEHICLE*>& getVehicle();//Lấy danh sách các xe
+	vector <CANIMAL*>& getAnimal(); //Lấy danh sách các thú
 	void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
 	void exitGame(HANDLE); // Thực hiện thoát Thread
 	void startGame(); // Thực hiện bắt đầu vào trò chơi
@@ -41,6 +41,7 @@ public:
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
 	bool getPause();
+	void setPause(bool x);
 
 };
 

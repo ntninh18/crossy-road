@@ -6,22 +6,50 @@ CGAME cg;
 void subThread()
 {
 	while (isRun) {
-		if (!cg.getPause()) {
-			if (KEY != NULL) {
-				cg.updatePosPeople(KEY);
-				KEY = NULL;
-			}
+		while (!cg.getPause())
+		{
 			cg.updatePosVehicle();
 			cg.updatePosAnimal();
-			if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
-				isRun = false;
-			}
-		}
-		Sleep(25);
 
+			Sleep(250);		//Speed
+		}
+
+
+
+		//}
+		//Sleep(100);
 	}
+	//while (isRun)
+	//{
+	//	if (!cg.getPause())
+	//	{
+	//		if (KEY != NULL)
+	//		{
+	//			cg.updatePosPeople(KEY);
+	//			KEY = NULL;
+	//		}
+	//		cg.updatePosAnimal();
+	//		cg.updatePosVehicle();
+	//		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
+	//			isRun = false;
+	//			cout << "Bi dung roi nha\n";
+	//		}
+	//	}
+	//	Sleep(25);
+	//}
 }
 
+void threadCheckImpact()
+{
+	while (isRun)
+	{
+		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
+			isRun = false;
+			cout << "Bi dung roi nha\n";
+		}
+	}
+	Sleep(1000);
+}
 
 string space(int k)
 {
@@ -114,15 +142,57 @@ void Menu()
 			//Test();
 			cg.startGame();
 			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-
 			thread t(subThread);
-			while (true)
+			//t.join();
+			while (isRun)
 			{
 				int temp = _getch();
 				KEY = temp;
+				if (KEY == 32)
+				{
+					if (cg.getPause() == false)
+						cg.setPause(true);
+					else cg.setPause(false);
+				}
 
+				if (!cg.getPause())
+				{
+
+					if (KEY != NULL)
+					{
+						cg.updatePosPeople(KEY);
+						KEY = NULL;
+					}
+					//if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
+					//	isRun = false;
+					//	cout << "Bi dung roi nha\n";
+					//}
+
+				}
 			}
 
+
+			//while (true)
+			//{
+			//	int temp = toupper(_getch());
+			//	KEY = temp;
+
+			//}
+
+	/*		while (true) {
+				if (!cg.getPause()) {
+					if (KEY != NULL) {
+						cg.updatePosPeople(KEY);
+						KEY = NULL;
+					}
+					while (true)
+					{
+						int temp = _getch();
+						KEY = temp;
+
+					}
+				}
+			}*/
 
 		}
 		if (y == 18 && key == key_Enter)

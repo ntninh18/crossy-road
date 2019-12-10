@@ -32,7 +32,7 @@ void CPEOPLE::Down()
 		mX = screenSizePlay_W - 3;
 }
 
-bool CPEOPLE::isImpact(const vector<CVEHICLE *>&vehicle)
+bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 {
 	//if (mY != vehicle[0].mY)
 	//	return false;
@@ -43,7 +43,7 @@ bool CPEOPLE::isImpact(const vector<CVEHICLE *>&vehicle)
 	//	}
 	//}
 	//return false;
-	for (int i =0; i< vehicle.size(); i++)
+	for (int i = 0; i < vehicle.size(); i++)
 	{
 		if (vehicle[i]->mX = mX && vehicle[i]->mY == mY)
 			return true;
@@ -62,7 +62,8 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 	//	}
 	//}
 	//return false;
-	for (int i = 0; i < animal.size(); i++)
+
+	for (int i = 0; i < animal.size(); i++)				//coi lai ham nay
 	{
 		if (animal[i]->mX = mX && animal[i]->mY == mY)
 			return true;
@@ -72,14 +73,14 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 
 bool CPEOPLE::isFinish()
 {
-	if (level == 10)
+	if (level == 5 && mY == 3)
 		return true;
 	return false;
 }
 
 void CPEOPLE::increaseLevel()
 {
-	if (level < 10) {
+	if (level < 5 && mY == 3) {
 		++level;
 	}
 }
@@ -100,75 +101,6 @@ void CPEOPLE::drawPeople(int x, int y)
 	cout << "  /\\";
 }
 
-//void CPEOPLE::move()
-//{
-//	mX = screenSizePlay_L / 2 - 1;
-//	mY = screenSizePlay_W - 3;
-//	drawPeople(mX, mY);
-//	while (true)
-//	{
-//		//cin.ignore();
-//		char key = _getch();
-//		while (true)
-//		{
-//			if (key == key_Up || key == 'w')	//di len
-//			{
-//				if (mY <= 1)
-//					break;
-//				else {
-//					delPeople(mX, mY);
-//					mY -= 1;
-//					gotoXY(mX, mY);
-//					drawPeople(mX, mY);
-//					break;
-//				}
-//
-//			}
-//			if (key == key_Down || key == 's')	//di xuong
-//			{
-//				if (mY >= screenSizePlay_W - 1)
-//					break;
-//				else {
-//					delPeople(mX, mY);
-//					mY += 1;
-//					gotoXY(mX, mY);
-//					drawPeople(mX, mY);
-//					break;
-//				}
-//
-//			}
-//			if (key == key_Left || key == 'a')	//qua trai
-//			{
-//				if (mX <= 1)
-//					break;
-//				else {
-//					delPeople(mX, mY);
-//					mX -= 1;
-//					gotoXY(mX, mY);
-//					drawPeople(mX, mY);
-//					break;
-//				}
-//
-//			}
-//			if (key == key_Right || key == 'd')	//qua phai
-//			{
-//				if (mX > screenSizePlay_L - 2)
-//					break;
-//				else {
-//					delPeople(mX, mY);
-//					mX += 1;
-//					gotoXY(mX, mY);
-//					drawPeople(mX, mY);
-//					break;
-//				}
-//			}
-//			//if (key == key_Esc) Menu(cg, KEY);
-//			else break;
-//
-//		}
-//	}
-//
-//}
 void CPEOPLE::delPeople(int x, int y)
 {
 	gotoXY(x, y);
@@ -187,7 +119,7 @@ void CPEOPLE::move(int m)
 	int key = m;
 	if (key == key_Up || key == 'w')	//di len
 	{
-		if (mY <3)
+		if (mY < 3)
 			return;
 		else {
 			delPeople(mX, mY);
@@ -276,11 +208,6 @@ void drawScreen()
 		for (int j = 1; j <= screenSizePlay_L; j++)
 			cout << (char)196;
 		cout << (char)182;
-		/*gotoXY(0, i+1);
-		cout << (char)204;
-		for (int j = 1; j <= screenSizePlay_L; j++)
-			cout << (char)205;
-		cout << (char)185;*/
 	}
 
 }

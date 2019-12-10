@@ -5,8 +5,8 @@ CGAME::CGAME()
 	cn = new CPEOPLE;
 	CVEHICLE* temp = new CCAR(30, 17);
 	veh.push_back(temp);
-	temp = new CCAR(15, 21);
-	veh.push_back(temp);
+	/*temp = new CCAR(15, 21);
+	veh.push_back(temp);*/
 	temp = new CCAR(3, 9);
 	veh.push_back(temp);
 	temp = new CTRUCK(60, 5);
@@ -16,7 +16,7 @@ CGAME::CGAME()
 
 	temp = new CTRUCK(25, 1);
 	veh.push_back(temp);
-	CANIMAL* tempA = new CBIRD(40, 25);
+	CANIMAL* tempA = new CBIRD(41, 26);
 	ani.push_back(tempA);
 	tempA = new CDINOSAUR(69, 13);
 	ani.push_back(tempA);
@@ -25,8 +25,8 @@ CGAME::CGAME()
 
 }
 
-void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
-{
+//void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
+//{
 	//gotoXY(x, y);
 	//cout << "X";
 	//for (int i = 1; i < width; i++)
@@ -45,11 +45,11 @@ void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curP
 	//	cout << "X";
 	//}
 	//gotoXY(curPosX, curPosY);
-}
+//}
 
 void CGAME::drawGame()
 {
-	cn->drawPeople(cn->mX, cn->mY);
+	//cn->drawPeople(cn->mX, cn->mY);
 	system("cls");
 	gotoXY(0, 0);
 	cout << (char)201;
@@ -78,11 +78,6 @@ void CGAME::drawGame()
 		for (int j = 1; j <= screenSizePlay_L; j++)
 			cout << (char)196;
 		cout << (char)182;
-		/*gotoXY(0, i+1);
-		cout << (char)204;
-		for (int j = 1; j <= screenSizePlay_L; j++)
-			cout << (char)205;
-		cout << (char)185;*/
 	}
 
 }
@@ -101,7 +96,7 @@ CPEOPLE* CGAME::getPeople()
 	return cn;
 }
 
-vector<CVEHICLE*> CGAME::getVehicle()
+vector<CVEHICLE*>& CGAME::getVehicle()
 {
 	//int numberOfVehicle = sizeof(axt) + sizeof(axh);
 	//CVEHICLE * ret = new CVEHICLE[numberOfVehicle];
@@ -118,7 +113,7 @@ vector<CVEHICLE*> CGAME::getVehicle()
 	return veh;
 }
 
-vector <CANIMAL*> CGAME::getAnimal()
+vector <CANIMAL*>& CGAME::getAnimal()
 {
 	//int numberOfAni = sizeof(akl) + sizeof(ac);
 	//CANIMAL * ret = new CANIMAL[numberOfAni];
@@ -213,7 +208,6 @@ void CGAME::updatePosVehicle()
 	for (int i = 0; i < veh.size(); i++)
 	{
 		veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
-		Sleep(25);
 	}
 }
 
@@ -222,12 +216,15 @@ void CGAME::updatePosAnimal()
 	for (int i = 0; i < ani.size(); i++)
 	{
 		ani[i]->Move(ani[i]->mX + 1, ani[i]->mY);
-		Sleep(25);
-
 	}
 }
 
 bool CGAME::getPause()
 {
 	return pause;
+}
+
+void CGAME::setPause(bool x)
+{
+	pause = x;
 }

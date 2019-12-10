@@ -36,8 +36,6 @@ void CCAR::Move(int x, int y)
 	mX = x;
 	mY = y;
 	draw();
-
-
 }
 void CCAR::draw()
 {
@@ -59,6 +57,7 @@ CCAR::CCAR(int x, int y) : CVEHICLE(x, y)
 }
 void CTRUCK::Move(int x, int y)
 {
+	earseVeh();
 	if (x >= screenSizePlay_L - 8)
 	{
 		earseVeh();
@@ -69,9 +68,9 @@ void CTRUCK::Move(int x, int y)
 	mX = x;
 	mY = y;
 	draw();
+	//Sleep(250);
 
 }
-
 void CTRUCK::draw()
 {
 	int x = mX;
