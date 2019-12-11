@@ -5,8 +5,8 @@ CGAME::CGAME()
 	cn = new CPEOPLE;
 	CVEHICLE* temp = new CCAR(30, 17);
 	veh.push_back(temp);
-	/*temp = new CCAR(15, 21);
-	veh.push_back(temp);*/
+	temp = new CCAR(15, 21);
+	veh.push_back(temp);
 	temp = new CCAR(3, 9);
 	veh.push_back(temp);
 	temp = new CTRUCK(60, 5);
@@ -16,9 +16,11 @@ CGAME::CGAME()
 
 	temp = new CTRUCK(25, 1);
 	veh.push_back(temp);
-	CANIMAL* tempA = new CBIRD(41, 26);
+	CANIMAL* tempA = new CBIRD(41, 25);
 	ani.push_back(tempA);
-	tempA = new CDINOSAUR(69, 13);
+	tempA = new CDINOSAUR(19, 13);
+	ani.push_back(tempA);
+	tempA = new CDINOSAUR(19, 25);
 	ani.push_back(tempA);
 
 
@@ -200,15 +202,22 @@ void CGAME::resumeGame(HANDLE)
 
 void CGAME::updatePosPeople(char mov)
 {
-	cn->move(mov);
+	int oldLevel = cn->getLevel();
+	cn->move(mov, *this);
+	int j = 0;
+	if (cn->getLevel() - oldLevel != 0)
+	{
+		CANIMAL* temp = new CDINOSAUR(2, lane[j]);
+		j++;
+	}
 }
 
 void CGAME::updatePosVehicle()
 {
-	for (int i = 0; i < veh.size(); i++)
-	{
-		veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
-	}
+		for (int i = 0; i < veh.size(); i++)
+		{
+			veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
+		}
 }
 
 void CGAME::updatePosAnimal()
@@ -227,4 +236,9 @@ bool CGAME::getPause()
 void CGAME::setPause(bool x)
 {
 	pause = x;
+}
+
+void CGAME::addMore(CANIMAL * x)
+{
+	ani.push_back(x);
 }

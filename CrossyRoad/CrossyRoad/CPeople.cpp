@@ -43,9 +43,9 @@ bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 	//	}
 	//}
 	//return false;
-	for (int i = 0; i < vehicle.size(); i++)
+	for (int i =0; i< vehicle.size(); i++)
 	{
-		if (vehicle[i]->mX = mX && vehicle[i]->mY == mY)
+		if ((vehicle[i]->mX <= mX && (mX<= (vehicle[i]->mX+7))) && vehicle[i]->mY == mY)
 			return true;
 	}
 	return false;
@@ -65,7 +65,7 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 
 	for (int i = 0; i < animal.size(); i++)				//coi lai ham nay
 	{
-		if (animal[i]->mX = mX && animal[i]->mY == mY)
+		if ((animal[i]->mX <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY)
 			return true;
 	}
 	return false;
@@ -73,16 +73,20 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 
 bool CPEOPLE::isFinish()
 {
-	if (level == 5 && mY == 3)
+	if (level == 5 && mY==3)
 		return true;
 	return false;
 }
 
-void CPEOPLE::increaseLevel()
+void CPEOPLE::increaseLevel(CGAME test)
 {
-	if (level < 5 && mY == 3) {
+	if (level < 5) {
 		++level;
 	}
+	CANIMAL* tempA = new CDINOSAUR(2, 25);
+	gotoXY(75, 25);
+	cout << "nef";
+	test.addMore(tempA);
 }
 
 
@@ -114,13 +118,20 @@ void CPEOPLE::changeState(bool x)
 {
 	mState = x;
 }
-void CPEOPLE::move(int m)
+void CPEOPLE::move(int m, CGAME test)
 {
 	int key = m;
 	if (key == key_Up || key == 'w')	//di len
 	{
 		if (mY < 3)
-			return;
+		{
+			delPeople(mX, mY);
+			increaseLevel(test);
+		
+			mX = screenSizePlay_L / 2;
+			mY = screenSizePlay_W - 3;
+			drawPeople(mX, mY);
+		}
 		else {
 			delPeople(mX, mY);
 			mY -= 4;
@@ -170,6 +181,10 @@ void CPEOPLE::move(int m)
 	}
 	//if (key == key_Esc) Menu();
 	else return;
+}
+int CPEOPLE::getLevel()
+{
+	return level;
 }
 bool CPEOPLE::isDead()
 {

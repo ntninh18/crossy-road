@@ -1,7 +1,7 @@
 #include "Library.h"
 void CDINOSAUR::Move(int x, int y)
 {
-	if (x >= screenSizePlay_L - 12)
+	if (x >= screenSizePlay_L - 7)
 	{
 		eraseAn();
 		mX = 2;
@@ -21,7 +21,7 @@ void CDINOSAUR::draw()
 	gotoXY(x, y);
 	cout << "   .___";
 	gotoXY(x, y + 1);
-	cout << "  /  o o  <( henlo fren! )";
+	cout << "  /  o o";
 	gotoXY(x, y + 2);
 	cout << " /   vvv";
 }
@@ -69,11 +69,11 @@ void CANIMAL::eraseAn()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "            ";
+	cout << "         ";
 	gotoXY(x, y + 1);
-	cout << "                         ";
+	cout << "        ";
 	gotoXY(x, y + 2);
-	cout << "             ";
+	cout << "        ";
 }
 
 void CBIRD::Move(int x, int y)
@@ -81,19 +81,19 @@ void CBIRD::Move(int x, int y)
 	if (x >= screenSizePlay_L - 8)
 	{
 		eraseAn();
-		mX = 2;
+		mX = 3;
 		mY = y;
 		return;
 	}
 	this->mX = x;
 	this->mY = y;
 	draw();
-	if (x == 70)
+	/*if (x == 70)
 	{
-		gotoXY(x - 3, y - 1); cout << "       ";
-		gotoXY(x - 5, y); cout << "               ";
+		gotoXY(x - 3, y - 1); cout << "      ";
+		gotoXY(x - 5, y); cout << "         ";
 		gotoXY(x - 3, y + 1); cout << "       ";
-	}
+	}*/
 }
 
 void CBIRD::Tell()
@@ -104,43 +104,55 @@ void CBIRD::draw()
 {
 	int x = mX;
 	int y = mY;
-	if (1) {
-		gotoXY(x - 3, y);
-		cout << " (  o)";
-		cout << '>';
-		int temp = x % 3;
-		if (temp % 3 == 0) {
-			gotoXY(x - 1, y - 1);
-			cout << "   /\\ ";
-		}
-		else if (temp % 3 == 1) {
-			gotoXY(x - 2, y);
-			cout << "  _";
-		}
-		else {
-			gotoXY(x - 1, y + 1);
-			cout << "   \\/ ";
-		}
-	}
-	else {
-		gotoXY(x - 3, y);
-		cout << ' <';
-		cout << " (o  )";
-		int temp = x % 3;
-		if (temp % 3 == 0) {
-			gotoXY(x - 1, y - 1);
-			cout << "   /\\ ";
-		}
-		else if (temp % 3 == 1) {
-			gotoXY(x, y);
-			cout << " _ ";
-		}
-		else {
-			gotoXY(x - 1, y + 1);
-			cout << "   \\/ ";
-		}
-	}
+	gotoXY(x, y);
+	cout << "   /\\ ";
+	gotoXY(x, y+1);
+
+	cout << " (   o)>";
+	gotoXY(x, y + 2);
+
+	cout << "   \\/ ";
+
+
+
+	//if (1) {
+	//	gotoXY(x - 3, y);
+	//	cout << " (  o)";
+	//	cout << '>';
+	//	int temp = x % 3;
+	//	if (temp % 3 == 0) {
+	//		gotoXY(x - 1, y - 1);
+	//		cout << "   /\\ ";
+	//	}
+	//	else if (temp % 3 == 1) {
+	//		gotoXY(x - 2, y);
+	//		cout << "  _";
+	//	}
+	//	else {
+	//		gotoXY(x - 1, y + 1);
+	//		cout << "   \\/ ";
+	//	}
+	//}
+	//else {
+	//	gotoXY(x - 3, y);
+	//	cout << ' <';
+	//	cout << " (o  )";
+	//	int temp = x % 3;
+	//	if (temp % 3 == 0) {
+	//		gotoXY(x - 1, y - 1);
+	//		cout << "   /\\ ";
+	//	}
+	//	else if (temp % 3 == 1) {
+	//		gotoXY(x, y);
+	//		cout << " _ ";
+	//	}
+	//	else {
+	//		gotoXY(x - 1, y + 1);
+	//		cout << "   \\/ ";
+	//	}
+	//}
 }
+
 
 CBIRD::CBIRD()
 {

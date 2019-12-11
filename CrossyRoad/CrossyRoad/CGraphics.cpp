@@ -1,5 +1,6 @@
 #include "CGraphics.h"
 #include "CGame.h"
+#include <chrono>
 bool isRun = true;
 int KEY = NULL;
 CGAME cg;
@@ -10,12 +11,17 @@ void subThread()
 		{
 			cg.updatePosVehicle();
 			cg.updatePosAnimal();
+			if (cg.getPeople()->getLevel() == 5)
+				Sleep(30);		//Speed
+			else if (cg.getPeople()->getLevel() == 4)
+				Sleep(50);
+			else if (cg.getPeople()->getLevel() == 3)
+				Sleep(100);
+			else if (cg.getPeople()->getLevel() == 3)
+				Sleep(150);
+			else Sleep(200);
 
-			Sleep(250);		//Speed
 		}
-
-
-
 		//}
 		//Sleep(100);
 	}
@@ -45,10 +51,12 @@ void threadCheckImpact()
 	{
 		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
 			isRun = false;
+			cg.setPause(true);
 			cout << "Bi dung roi nha\n";
 		}
+
 	}
-	Sleep(1000);
+	
 }
 
 string space(int k)
@@ -109,6 +117,7 @@ void Menu()
 		case 18: gotoXY(x - 1, 18); cout << menu_text[1]; break;
 		case 19: gotoXY(x, 19); cout << menu_text[2]; break;
 		}
+		
 		key = _getch();
 		if (key == key_Up)
 		{
@@ -143,7 +152,8 @@ void Menu()
 			cg.startGame();
 			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
 			thread t(subThread);
-			//t.join();
+		
+			thread t1(threadCheckImpact);
 			while (isRun)
 			{
 				int temp = _getch();
@@ -163,13 +173,12 @@ void Menu()
 						cg.updatePosPeople(KEY);
 						KEY = NULL;
 					}
-					//if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
-					//	isRun = false;
-					//	cout << "Bi dung roi nha\n";
-					//}
+
 
 				}
 			}
+			t.join();
+			t1.join();
 
 
 			//while (true)

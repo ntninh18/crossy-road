@@ -26,7 +26,7 @@ CVEHICLE::CVEHICLE(int x, int y)
 
 void CCAR::Move(int x, int y)
 {
-	if (x >= screenSizePlay_L - 8)
+	if (x >= screenSizePlay_L - 10)
 	{
 		earseVeh();
 		mX = 2;
@@ -42,11 +42,11 @@ void CCAR::draw()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "   " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "   " << (char)219 << (char)219 << (char)219 << (char)219;
 	gotoXY(x, y + 1);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
 	gotoXY(x, y + 2);
-	cout << "   O     O";
+	cout << "   O   O";
 }
 CCAR::CCAR() : CVEHICLE()
 {
@@ -58,7 +58,7 @@ CCAR::CCAR(int x, int y) : CVEHICLE(x, y)
 void CTRUCK::Move(int x, int y)
 {
 	earseVeh();
-	if (x >= screenSizePlay_L - 8)
+	if (x >= screenSizePlay_L - 10)
 	{
 		earseVeh();
 		mX = 2;
@@ -76,11 +76,11 @@ void CTRUCK::draw()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
 	gotoXY(x, y + 1);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
 	gotoXY(x, y + 2);
-	cout << "  O     O";
+	cout << "  O   O";
 }
 
 CTRUCK::CTRUCK() : CVEHICLE()
@@ -97,11 +97,11 @@ void CVEHICLE::earseVeh()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "            ";
+	cout << "           ";
 	gotoXY(x, y + 1);
-	cout << "            ";
+	cout << "           ";
 	gotoXY(x, y + 2);
-	cout << "            ";
+	cout << "           ";
 }
 
 void CVEHICLE::Move(int, int)

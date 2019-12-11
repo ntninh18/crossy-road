@@ -15,6 +15,8 @@ using namespace std;
 #define MAX_CAR_LENGTH 60
 #define WIDTH_CONSOLE 100
 #define HEIGH_CONSOLE 20
+
+const int lane[7] = { 1,5,9,13,17,21,25 };
 class CGAME {
 
 	bool pause;	//state of game: do stop?
@@ -42,6 +44,7 @@ public:
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
 	bool getPause();
 	void setPause(bool x);
+	void addMore(CANIMAL* x);
 
 };
 

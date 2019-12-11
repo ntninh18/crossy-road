@@ -7,7 +7,7 @@
 int main() {
 	system("color 0E");
 	FixConsoleWindow();
-	resizeConsole(1300, 600);
+	resizeConsole(1000, 600);
 	Text(30, 5);
 
 	Menu();
