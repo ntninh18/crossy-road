@@ -11,5 +11,5 @@ string block(int k);
 void Text(int x, int y);
 void Menu();
 void Test();
-
+void normalSize();
 #endif // !GRAPHIC_H_

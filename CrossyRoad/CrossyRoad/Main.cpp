@@ -1,16 +1,12 @@
 #include "Library.h"
 #include "CGame.h"
-
-
-
-
 int main() {
-	system("color 0E");
+	system("color E0");
+	SetConsoleTitle("Crossy Road - CS202 Project");
 	FixConsoleWindow();
-	resizeConsole(1000, 600);
-	Text(30, 5);
-
-	Menu();
+	normalSize();
+	Text(15, 5);
+	// Menu();
 
 	//CGAME cg;
 	//while (1)
@@ -19,5 +15,7 @@ int main() {
 	//	Sleep(25);
 	//	cg.updatePosAnimal();
 	//}
+	_getch();
+	Menu();
 	return 0;
 }

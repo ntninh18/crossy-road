@@ -78,26 +78,6 @@ void TextColor(int color)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void showLoginMenu()		//co sua toa do
-{
-	Point staffPosition = { 70,24 };
-	char staffText[] = "STAFF";
-
-	Point studentPosition = { 70,27 };
-	char studentText[] = "STUDENT";
-
-	Point lecturePosition = { 70,30 };
-	char lectureText[] = "LECTURE";
-
-	Point exitPosition = { 45,21 };
-	char exitText[] = "EXIT";
-
-	DrawFrame(staffPosition, 15, 1, staffText);
-	DrawFrame(studentPosition, 15, 1, studentText);
-	DrawFrame(lecturePosition, 15, 1, lectureText);
-	DrawFrame(exitPosition, 15, 1, exitText);
-}
-
 void clearScn()
 {
 	HANDLE hOut;
@@ -182,4 +162,19 @@ void resizeConsole(int width, int height)
 	RECT r;
 	GetWindowRect(console, &r);
 	MoveWindow(console, r.left, r.top, width, height, TRUE);
+}
+void setFontSize(int FontSize)
+{
+	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_FONT_INFOEX cfi;
+	GetCurrentConsoleFontEx(out, false, &cfi);
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;
+	cfi.dwFontSize.Y = FontSize;
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL;
+	wcscpy_s(cfi.FaceName, L"Consolas");
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+	SetCurrentConsoleFontEx(out, false, &cfi);
 }

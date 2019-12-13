@@ -1,9 +1,9 @@
-#include "Library.h"
+﻿#include "Library.h"
 void CDINOSAUR::Move(int x, int y)
 {
-	if (x >= screenSizePlay_L - 7)
+	if (x >= screenSizePlay_L - 10)
 	{
-		eraseAn();
+		eraseAnimal();
 		mX = 2;
 		mY = y;
 		return;
@@ -19,12 +19,18 @@ void CDINOSAUR::draw()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "   .___";
+	cout << "  /\\__/\\ ";
 	gotoXY(x, y + 1);
-	cout << "  /  o o";
+	cout << " (  OwO`)";
 	gotoXY(x, y + 2);
-	cout << " /   vvv";
+	cout << " o(_   )_";
 }
+
+/*
+  /\__/\
+ (  OwO`)  
+ o(_   )_
+*/
 
 void CDINOSAUR::Tell()
 {
@@ -64,23 +70,23 @@ CANIMAL::CANIMAL(int x, int y)
 	mY = y;
 }
 
-void CANIMAL::eraseAn()
+void CANIMAL::eraseAnimal()
 {
 	int x = mX;
 	int y = mY;
-	gotoXY(x, y);
-	cout << "         ";
-	gotoXY(x, y + 1);
-	cout << "        ";
-	gotoXY(x, y + 2);
-	cout << "        ";
+	gotoXY(x - 1, y);
+	cout << "           ";
+	gotoXY(x - 1, y + 1);
+	cout << "           ";
+	gotoXY(x - 1, y + 2);
+	cout << "           ";
 }
 
 void CBIRD::Move(int x, int y)
 {
-	if (x >= screenSizePlay_L - 8)
+	if (x >= screenSizePlay_L - 10)
 	{
-		eraseAn();
+		eraseAnimal();
 		mX = 3;
 		mY = y;
 		return;
@@ -105,13 +111,7 @@ void CBIRD::draw()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "   /\\ ";
-	gotoXY(x, y+1);
-
-	cout << " (   o)>";
-	gotoXY(x, y + 2);
-
-	cout << "   \\/ ";
+	cout << " =(C o)>";
 
 
 

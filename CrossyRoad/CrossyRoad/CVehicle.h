@@ -13,7 +13,7 @@ public:
 	friend class CGAME;
 	CVEHICLE();
 	CVEHICLE(int x, int y);
-	void earseVeh();
+	void eraseVehicle();
 	// ...
 };
 class CTRUCK : public CVEHICLE {

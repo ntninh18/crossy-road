@@ -43,10 +43,12 @@ bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 	//	}
 	//}
 	//return false;
-	for (int i =0; i< vehicle.size(); i++)
+	for (int i =0; i < vehicle.size(); i++)
 	{
-		if ((vehicle[i]->mX <= mX && (mX<= (vehicle[i]->mX+7))) && vehicle[i]->mY == mY)
+		if ((vehicle[i]->mX <= mX && (mX <= (vehicle[i]->mX + 7))) && vehicle[i]->mY == mY) {
+			mState = false;
 			return true;
+		}
 	}
 	return false;
 }
@@ -65,8 +67,10 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 
 	for (int i = 0; i < animal.size(); i++)				//coi lai ham nay
 	{
-		if ((animal[i]->mX <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY)
+		if ((animal[i]->mX <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY) {
+			mState = false;
 			return true;
+		}
 	}
 	return false;
 }
@@ -84,35 +88,53 @@ void CPEOPLE::increaseLevel(CGAME test)
 		++level;
 	}
 	CANIMAL* tempA = new CDINOSAUR(2, 25);
-	gotoXY(75, 25);
-	cout << "nef";
+	gotoXY(90, 21);
+	cout << level;
 	test.addMore(tempA);
 }
 
-
+/*
+  ___
+ (o-o)
+ /___\
+*/
 void CPEOPLE::drawPeople(int x, int y)
 {
-	/*
-	 ()
-	/||\
-	 /\
-	*/
-	gotoXY(x, y);
-	cout << "  ()";
-	gotoXY(x, y + 1);
-	cout << " /||\\";
-	gotoXY(x, y + 2);
-	cout << "  /\\";
+	//gotoXY(x, y);
+	//cout << "  ()";
+	//gotoXY(x, y + 1);
+	//cout << " /||\\";
+	//gotoXY(x, y + 2);
+	//cout << "  /\\";
+
+	if (!isDead()) {
+		gotoXY(x, y);
+		cout << "  ___";
+		gotoXY(x, y + 1);
+		cout << " (o-o)";
+		gotoXY(x, y + 2);
+		cout << " /___\\";
+	}
+	else {
+		TextColor(236);
+		gotoXY(x, y);
+		cout << "  ___";
+		gotoXY(x, y + 1);
+		cout << " (x-x)";
+		gotoXY(x, y + 2);
+		cout << " /___\\";
+		TextColor(214);
+	}
 }
 
-void CPEOPLE::delPeople(int x, int y)
+void CPEOPLE::erasePeople(int x, int y)
 {
 	gotoXY(x, y);
-	cout << "    ";
+	cout << "      ";
 	gotoXY(x, y + 1);
-	cout << "     ";
+	cout << "       ";
 	gotoXY(x, y + 2);
-	cout << "    ";
+	cout << "        ";
 }
 void CPEOPLE::changeState(bool x)
 {
@@ -125,7 +147,7 @@ void CPEOPLE::move(int m, CGAME test)
 	{
 		if (mY < 3)
 		{
-			delPeople(mX, mY);
+			erasePeople(mX, mY);
 			increaseLevel(test);
 		
 			mX = screenSizePlay_L / 2;
@@ -133,7 +155,7 @@ void CPEOPLE::move(int m, CGAME test)
 			drawPeople(mX, mY);
 		}
 		else {
-			delPeople(mX, mY);
+			erasePeople(mX, mY);
 			mY -= 4;
 			gotoXY(mX, mY);
 			drawPeople(mX, mY);
@@ -146,7 +168,7 @@ void CPEOPLE::move(int m, CGAME test)
 		if (mY >= screenSizePlay_W - 3)
 			return;
 		else {
-			delPeople(mX, mY);
+			erasePeople(mX, mY);
 			mY += 4;
 			gotoXY(mX, mY);
 			drawPeople(mX, mY);
@@ -159,7 +181,7 @@ void CPEOPLE::move(int m, CGAME test)
 		if (mX <= 2)
 			return;
 		else {
-			delPeople(mX, mY);
+			erasePeople(mX, mY);
 			mX -= 2;
 			gotoXY(mX, mY);
 			drawPeople(mX, mY);
@@ -172,14 +194,14 @@ void CPEOPLE::move(int m, CGAME test)
 		if (mX >= screenSizePlay_L - 4)
 			return;
 		else {
-			delPeople(mX, mY);
+			erasePeople(mX, mY);
 			mX += 2;
 			gotoXY(mX, mY);
 			drawPeople(mX, mY);
 			return;
 		}
 	}
-	//if (key == key_Esc) Menu();
+	// if (key == key_Esc) Menu();
 	else return;
 }
 int CPEOPLE::getLevel()

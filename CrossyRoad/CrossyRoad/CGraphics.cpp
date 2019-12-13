@@ -52,7 +52,9 @@ void threadCheckImpact()
 		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
 			isRun = false;
 			cg.setPause(true);
-			cout << "Bi dung roi nha\n";
+			PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
+			_getch();
+			exit(0);
 		}
 
 	}
@@ -100,12 +102,13 @@ void Text(int x, int y) {
 
 void Menu()
 {
+	clrscr();
 	int key;
+	setFontSize(40);
+	resizeConsole(1080, 575);
 	char menu_text[3][100] = { "NEW GAME","LOAD GAME","SETTINGS" };
-	SetConsoleTitle("Crossy Road - CS202 Project");
-	Text(30, 5);
 
-	int x = 36, y = 17;
+	int x = 45, y = 17, Y = 17;
 	gotoXY(x, 17); cout << menu_text[0];
 	gotoXY(x - 1, 18); cout << menu_text[1];
 	gotoXY(x, 19); cout << menu_text[2];
@@ -113,9 +116,9 @@ void Menu()
 		gotoXY(x, y);
 		switch (y)
 		{
-		case 17: gotoXY(x, 17); cout << menu_text[0]; break;
-		case 18: gotoXY(x - 1, 18); cout << menu_text[1]; break;
-		case 19: gotoXY(x, 19); cout << menu_text[2]; break;
+		case 17: gotoXY(x, Y); cout << menu_text[0]; break;
+		case 18: gotoXY(x - 1, Y+1); cout << menu_text[1]; break;
+		case 19: gotoXY(x, Y+2); cout << menu_text[2]; break;
 		}
 		
 		key = _getch();
@@ -124,33 +127,32 @@ void Menu()
 			gotoXY(x, y);
 			switch (y)
 			{
-			case 17: gotoXY(x, 17); cout << menu_text[0]; break;
-			case 18: gotoXY(x - 1, 18); cout << menu_text[1]; break;
-			case 19: gotoXY(x, 19); cout << menu_text[2]; break;
+			case 17: gotoXY(x, Y); cout << menu_text[0]; break;
+			case 18: gotoXY(x - 1, Y+1); cout << menu_text[1]; break;
+			case 19: gotoXY(x, Y+2); cout << menu_text[2]; break;
 			}
 			y--;
-			if (y < 17)
-				y = 19;
+			if (y < Y)
+				y = Y+2;
 		}
 		else if (key == key_Down)
 		{
 			gotoXY(x, y);
 			switch (y)
 			{
-			case 17: gotoXY(x, 17); cout << menu_text[0]; break;
-			case 18: gotoXY(x - 1, 18); cout << menu_text[1]; break;
-			case 19: gotoXY(x, 19); cout << menu_text[2]; break;
+			case 17: gotoXY(x, Y); cout << menu_text[0]; break;
+			case 18: gotoXY(x - 1, Y+1); cout << menu_text[1]; break;
+			case 19: gotoXY(x, Y+2); cout << menu_text[2]; break;
 			}
 			y++;
-			if (y > 19)
-				y = 17;
+			if (y > Y+2)
+				y = Y;
 		}
-		if (y == 17 && key == key_Enter)
+		if (y == Y && key == key_Enter)
 		{
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
 			cg.startGame();
-			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
 			thread t(subThread);
 		
 			thread t1(threadCheckImpact);
@@ -158,7 +160,7 @@ void Menu()
 			{
 				int temp = _getch();
 				KEY = temp;
-				if (KEY == 32)
+				if (KEY == key_Space)
 				{
 					if (cg.getPause() == false)
 						cg.setPause(true);
@@ -225,4 +227,8 @@ void Test() {
 	//a.move();
 	CGAME m;
 	m.resetGame();
+}
+void normalSize() {
+	setFontSize(16);
+	resizeConsole(1080, 575);
 }

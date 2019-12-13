@@ -26,9 +26,9 @@ CVEHICLE::CVEHICLE(int x, int y)
 
 void CCAR::Move(int x, int y)
 {
-	if (x >= screenSizePlay_L - 10)
+	if (x >= screenSizePlay_L - 12)
 	{
-		earseVeh();
+		eraseVehicle();
 		mX = 2;
 		mY = y;
 		return;
@@ -37,16 +37,26 @@ void CCAR::Move(int x, int y)
 	mY = y;
 	draw();
 }
+/*
+   ______
+  /|_||_\\__
+ |_ o___o ___\
+ */
 void CCAR::draw()
 {
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "   " << (char)219 << (char)219 << (char)219 << (char)219;
+	//cout << "   " << (char)219 << (char)219 << (char)219 << (char)219;
+	//gotoXY(x, y + 1);
+	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	//gotoXY(x, y + 2);
+	//cout << "   O   O";
+	cout << "   ______";
 	gotoXY(x, y + 1);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "  /|_||_\\\\___";
 	gotoXY(x, y + 2);
-	cout << "   O   O";
+	cout << " |_ o___o ___|";
 }
 CCAR::CCAR() : CVEHICLE()
 {
@@ -57,10 +67,10 @@ CCAR::CCAR(int x, int y) : CVEHICLE(x, y)
 }
 void CTRUCK::Move(int x, int y)
 {
-	earseVeh();
-	if (x >= screenSizePlay_L - 10)
+	eraseVehicle();
+	if (x >= screenSizePlay_L - 12)
 	{
-		earseVeh();
+		eraseVehicle();
 		mX = 2;
 		mY = y;
 		return;
@@ -71,16 +81,28 @@ void CTRUCK::Move(int x, int y)
 	//Sleep(250);
 
 }
+
+/*
+   _________.
+  | |_| |_| |_
+  |_ o___o ___|
+ */
+
 void CTRUCK::draw()
 {
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	//gotoXY(x, y + 1);
+	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	//gotoXY(x, y + 2);
+	//cout << "  O   O";
+	cout << " _________ ";
 	gotoXY(x, y + 1);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
+	cout << "| |_| |_| |_" ;
 	gotoXY(x, y + 2);
-	cout << "  O   O";
+	cout << "|_ o___o ___|";
 }
 
 CTRUCK::CTRUCK() : CVEHICLE()
@@ -92,16 +114,16 @@ CTRUCK::CTRUCK(int x, int y) : CVEHICLE(x, y)
 {
 }
 
-void CVEHICLE::earseVeh()
+void CVEHICLE::eraseVehicle()
 {
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << "           ";
+	cout << "            ";
 	gotoXY(x, y + 1);
-	cout << "           ";
+	cout << "            ";
 	gotoXY(x, y + 2);
-	cout << "           ";
+	cout << "              ";
 }
 
 void CVEHICLE::Move(int, int)

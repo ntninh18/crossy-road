@@ -51,21 +51,22 @@ CGAME::CGAME()
 
 void CGAME::drawGame()
 {
-	//cn->drawPeople(cn->mX, cn->mY);
 	system("cls");
-	gotoXY(0, 0);
+	cn->drawPeople(cn->mX, cn->mY);
+	int x = 1;
+	gotoXY(x, 0);
 	cout << (char)201;
-	for (int i = 0; i < screenSizePlay_L; i++) {
+	for (int i = x; i < screenSizePlay_L; i++) {
 		cout << (char)205;
 	}
 	cout << (char)187;
 	for (int j = 1; j < screenSizePlay_W; j++) {
-		gotoXY(0, j);
+		gotoXY(x, j);
 		cout << (char)186;
 	}
-	gotoXY(0, screenSizePlay_W);
+	gotoXY(x, screenSizePlay_W);
 	cout << (char)200;
-	for (int i = 0; i <= screenSizePlay_L - 1; i++) {
+	for (int i = x; i <= screenSizePlay_L - x; i++) {
 		cout << (char)205;
 	}
 	cout << (char)188;
@@ -75,9 +76,9 @@ void CGAME::drawGame()
 
 	}
 	for (int i = 4; i < screenSizePlay_W; i += 4) {
-		gotoXY(0, i);
+		gotoXY(x, i);
 		cout << (char)199;
-		for (int j = 1; j <= screenSizePlay_L; j++)
+		for (int j = 1; j <= screenSizePlay_L - x; j++)
 			cout << (char)196;
 		cout << (char)182;
 	}
@@ -180,6 +181,7 @@ void CGAME::exitGame(HANDLE t)
 
 void CGAME::startGame()
 {
+	normalSize();
 	//resetGame();
 	//cn.changeState(true);
 	cn = new CPEOPLE;

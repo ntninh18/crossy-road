@@ -13,7 +13,7 @@ public:
 	friend class CGAME;
 	CANIMAL();
 	CANIMAL(int x, int y);
-	void eraseAn();
+	void eraseAnimal();
 };
 class CDINOSAUR : public CANIMAL {
 public:

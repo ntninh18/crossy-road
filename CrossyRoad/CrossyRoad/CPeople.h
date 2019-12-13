@@ -7,7 +7,7 @@
 #include "CVehicle.h"
 using namespace std;
 const int screenSizePlay_W = 32;
-const int screenSizePlay_L = 70;
+const int screenSizePlay_L = 80;
 
 class CPEOPLE {
 	int mX, mY;
@@ -19,14 +19,14 @@ public:
 	void Left();
 	void Right();
 	void Down();
-	bool isImpact(const vector<CVEHICLE*>& vihecle);
+	bool isImpact(const vector<CVEHICLE*>& vehicle);
 	bool isImpact(const vector<CANIMAL*>& animal);
 	bool isFinish();
 	void increaseLevel(CGAME test);
 	void drawPeople(int, int);
 	bool isDead();
 	void move();
-	void delPeople(int, int);
+	void erasePeople(int, int);
 	void changeState(bool);
 	void move(int m, CGAME test);
 	friend class CGAME;
