@@ -45,7 +45,7 @@ bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 	//return false;
 	for (int i =0; i < vehicle.size(); i++)
 	{
-		if ((vehicle[i]->mX <= mX && (mX <= (vehicle[i]->mX + 7))) && vehicle[i]->mY == mY) {
+		if ((vehicle[i]->mX-4 <= mX && (mX <= (vehicle[i]->mX + 12))) && vehicle[i]->mY == mY) {
 			mState = false;
 			return true;
 		}
@@ -67,7 +67,7 @@ bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 
 	for (int i = 0; i < animal.size(); i++)				//coi lai ham nay
 	{
-		if ((animal[i]->mX <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY) {
+		if ((animal[i]->mX-4 <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY) {
 			mState = false;
 			return true;
 		}
@@ -208,6 +208,7 @@ int CPEOPLE::getLevel()
 {
 	return level;
 }
+
 bool CPEOPLE::isDead()
 {
 	if (mState == 0)

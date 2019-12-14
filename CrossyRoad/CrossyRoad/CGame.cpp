@@ -3,22 +3,30 @@
 CGAME::CGAME()
 {
 	cn = new CPEOPLE;
-	CVEHICLE* temp = new CCAR(30, 17);
+	CVEHICLE* temp = new CCAR(30, lane[4]);
+	veh.push_back(temp);
+	temp = new CTRUCK(60, lane[0]);
 	veh.push_back(temp);
 	temp = new CCAR(15, 21);
 	veh.push_back(temp);
 	temp = new CCAR(3, 9);
 	veh.push_back(temp);
-	temp = new CTRUCK(60, 5);
+	temp = new CCAR(55, lane[4]);
 	veh.push_back(temp);
-	temp = new CTRUCK(30, 5);
+	temp = new CCAR(35, lane[2]);
+	veh.push_back(temp);
+	temp = new CTRUCK(15, lane[1]);
+	veh.push_back(temp);
+	temp = new CTRUCK(40, lane[1]);
 	veh.push_back(temp);
 
 	temp = new CTRUCK(25, 1);
 	veh.push_back(temp);
 	CANIMAL* tempA = new CBIRD(41, 25);
 	ani.push_back(tempA);
-	tempA = new CDINOSAUR(19, 13);
+	tempA = new CDINOSAUR(19, lane[3]);
+	ani.push_back(tempA);
+	tempA = new CBIRD(59, lane[3]);
 	ani.push_back(tempA);
 	tempA = new CDINOSAUR(19, 25);
 	ani.push_back(tempA);

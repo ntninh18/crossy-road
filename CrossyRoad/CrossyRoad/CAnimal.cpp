@@ -111,7 +111,7 @@ void CBIRD::draw()
 	int x = mX;
 	int y = mY;
 	gotoXY(x, y);
-	cout << " =(C o)>";
+	cout << " =(C  o)>";
 
 
 

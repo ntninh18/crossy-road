@@ -121,7 +121,7 @@ void CVEHICLE::eraseVehicle()
 	gotoXY(x, y);
 	cout << "            ";
 	gotoXY(x, y + 1);
-	cout << "            ";
+	cout << "             ";
 	gotoXY(x, y + 2);
 	cout << "              ";
 }

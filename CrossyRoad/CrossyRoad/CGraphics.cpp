@@ -1,15 +1,30 @@
 #include "CGraphics.h"
 #include "CGame.h"
 #include <chrono>
+#include <ctime>
 bool isRun = true;
 int KEY = NULL;
+int light = 0;
 CGAME cg;
 void subThread()
 {
 	while (isRun) {
 		while (!cg.getPause())
 		{
-			cg.updatePosVehicle();
+			//srand(time(0));
+			light = rand() % 2 + 1;
+			if (light == 1)
+			{
+				gotoXY(75, 30);
+				TextColor(ColorCode_DarkRed);
+				cout << char(219);
+				system("color E0");
+				cg.updatePosVehicle();
+			}
+			else
+			{
+
+			}
 			cg.updatePosAnimal();
 			if (cg.getPeople()->getLevel() == 5)
 				Sleep(30);		//Speed
@@ -17,7 +32,7 @@ void subThread()
 				Sleep(50);
 			else if (cg.getPeople()->getLevel() == 3)
 				Sleep(100);
-			else if (cg.getPeople()->getLevel() == 3)
+			else if (cg.getPeople()->getLevel() == 2)
 				Sleep(150);
 			else Sleep(200);
 
@@ -154,8 +169,8 @@ void Menu()
 			//Test();
 			cg.startGame();
 			thread t(subThread);
-		
 			thread t1(threadCheckImpact);
+
 			while (isRun)
 			{
 				int temp = _getch();
