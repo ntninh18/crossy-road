@@ -171,50 +171,52 @@ void Menu()
 						game.setPause(true);
 					else game.setPause(false);
 				}
+				if (KEY == 's' || KEY == 'S')
+				{
+					game.setPause(true);
+					string save_player;
+					gotoXY(95, 10);
+					cout << "Enter player: ";
+					gotoXY(110, 10); cin >> save_player;
+					game.saveGame(save_player);
+					gotoXY(95, 10);
+					cout << "Successfully saved!";
+					_getch();
+					Menu();
+				}
 				if (KEY == 'l' || KEY == 'L')
 				{
 					game.setPause(true);
-					char name[50];
+					string load_player;
 					gotoXY(95, 10);
-					cout << "Save at: ";
-					cin >> name;
-					game.saveGame(name);
-					gotoXY(95, 10);
-					cout << "                         ";
-				}
-				if (KEY == 't' || KEY == 'T')
-				{
-					game.setPause(true);
-					char namE[50];
-					gotoXY(95, 10);
-					cout << "Load at: ";
-					cin >> namE;
-					game.loadGame(namE);
+					cout << "Enter player: ";
+					cin >> load_player;
+					game.loadGame(load_player);
 					gotoXY(95, 10);
 					cout << "                         ";
 				}
 				if (!game.getPause())
 				{
-
 					if (KEY != NULL)
 					{
 						game.updatePosPeople(KEY);
 						KEY = NULL;
 					}
 				}
-
 			}
 			t.join();
 			t1.join();
 		}
 		if (y == 18 && key == key_Enter)
 		{
-			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-			char namE[50];
-			gotoXY(30, 10);
-			cout << "Load at: ";
-			cin >> namE;
-			game.loadGame(namE);
+			clrscr();
+			CDINOSAUR a(13, 5);
+			string load_player;
+			gotoXY(20, 5);
+			a.draw();
+			cout << "Enter player: ";
+			cin >> load_player;
+			game.loadGame(load_player);
 			y = Y;
 		}
 		else if (y == 19 && key == key_Enter)

@@ -45,8 +45,8 @@ public:
 	bool getPause();
 	void setPause(bool x);
 	void addMore(CANIMAL* x);
-	bool saveGame(const char * sFile);
-	bool loadGame(const char * sFile);
+	bool saveGame(string);
+	bool loadGame(string);
 };
 
 #endif

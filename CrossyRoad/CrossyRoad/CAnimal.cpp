@@ -46,19 +46,6 @@ CDINOSAUR::CDINOSAUR(int x, int y) : CANIMAL(x, y)
 	type = dino;
 }
 
-void CANIMAL::Move(int, int)
-{
-	return;
-}
-
-void CANIMAL::draw()
-{
-}
-
-void CANIMAL::Tell()
-{
-	return;
-}
 
 CANIMAL::CANIMAL()
 {

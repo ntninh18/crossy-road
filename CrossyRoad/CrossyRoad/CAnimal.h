@@ -9,9 +9,9 @@ protected:
 	int mX, mY;
 	int type;
 public:
-	virtual void Move(int, int);
-	virtual void draw();
-	virtual void Tell();
+	virtual void Move(int, int) = 0;
+	virtual void draw() = 0;
+	virtual void Tell() = 0;
 	friend class CPEOPLE;
 	friend class CGAME;
 	CANIMAL();

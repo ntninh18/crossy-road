@@ -87,6 +87,7 @@ void CGAME::drawGame()
 			cout << (char)196;
 		cout << (char)182;
 	}
+	instruction();
 
 }
 
@@ -254,7 +255,7 @@ void CGAME::addMore(CANIMAL * x)
 	ani.push_back(x);
 }
 
-bool CGAME::saveGame(const char * sFile)
+bool CGAME::saveGame(string sFile)
 {
 	ofstream sF;
 	sF.open(sFile);
@@ -278,7 +279,7 @@ bool CGAME::saveGame(const char * sFile)
 	return true;
 }
 
-bool CGAME::loadGame(const char * sFile)
+bool CGAME::loadGame(string sFile)
 {
 	cn->erasePeople(cn->mX,cn->mY);
 	for (int i = 0; i < veh.size(); i++)
@@ -308,4 +309,25 @@ bool CGAME::loadGame(const char * sFile)
 	}
 	sF.close();
 	return true;
+}
+
+void CGAME::instruction()
+{
+	int x = screenSizePlay_L + 10;
+	gotoXY(x, 5);
+	cout << "USE THE ARROW KEYS ON YOUR KEYBOARD TO MOVE";
+	gotoXY(x, 7);
+	cout << "OR";
+	gotoXY(x, 9);
+	cout << "w - W : UP\n";
+	gotoXY(x, 11);
+	cout << "s - S : DOWN";
+	gotoXY(x, 13);
+	cout << "d - D : RIGHT";
+	gotoXY(x, 15);
+	cout << "a - A : LEFT";
+	gotoXY(x, 20);
+	cout << "L : SAVE GAME";
+	gotoXY(x, 22);
+	cout << "T : LOAD GAME";
 }
