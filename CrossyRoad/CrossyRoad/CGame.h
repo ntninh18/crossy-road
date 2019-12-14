@@ -47,6 +47,7 @@ public:
 	void addMore(CANIMAL* x);
 	bool saveGame(const char * sFile);
 	bool loadGame(const char * sFile);
+	void instruction();
 };
 
 #endif
