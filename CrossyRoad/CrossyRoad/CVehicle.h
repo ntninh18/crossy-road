@@ -8,28 +8,29 @@ class CVEHICLE {
 protected:
 	int mX, mY;
 	int type;
+	bool direction;
 public:
-	virtual void Move(int, int);
-	virtual void draw();
+	virtual void Move(int, int) = 0;
+	virtual void draw() = 0;
 	friend class CPEOPLE;
 	friend class CGAME;
 	CVEHICLE();
-	CVEHICLE(int x, int y);
+	CVEHICLE(int x, int y, bool dir);
+	bool getDirection();
 	void eraseVehicle();
-	// ...
 };
 class CTRUCK : public CVEHICLE {
 public:
 	void Move(int, int);
 	void draw();
 	CTRUCK();
-	CTRUCK(int x, int y);
+	CTRUCK(int x, int y, bool dir);
 };
 class CCAR : public CVEHICLE {
 public:
 	void Move(int, int);
 	void draw();
 	CCAR();
-	CCAR(int x, int y);
+	CCAR(int x, int y, bool dir);
 };
 #endif

@@ -3,24 +3,24 @@
 CGAME::CGAME()
 {
 	cn = new CPEOPLE;
-	CVEHICLE* temp = new CCAR(30, lane[4]);
+	CVEHICLE* temp = new CCAR(30, lane[4], true);
 	veh.push_back(temp);
-	temp = new CTRUCK(60, lane[0]);
+	temp = new CTRUCK(60, lane[0], true);
 	veh.push_back(temp);
-	temp = new CCAR(15, 21);
+	temp = new CCAR(15, 21, false);
 	veh.push_back(temp);
-	temp = new CCAR(3, 9);
+	temp = new CCAR(3, 9, true);
 	veh.push_back(temp);
-	temp = new CCAR(55, lane[4]);
+	temp = new CCAR(55, lane[4], true);
 	veh.push_back(temp);
-	temp = new CCAR(35, lane[2]);
+	temp = new CCAR(35, lane[2], true);
 	veh.push_back(temp);
-	temp = new CTRUCK(15, lane[1]);
+	temp = new CTRUCK(15, lane[1], false);
 	veh.push_back(temp);
-	temp = new CTRUCK(40, lane[1]);
+	temp = new CTRUCK(40, lane[1], false);
 	veh.push_back(temp);
 
-	temp = new CTRUCK(25, 1);
+	temp = new CTRUCK(25, 1, true);
 	veh.push_back(temp);
 	CANIMAL* tempA = new CBIRD(41, 25);
 	ani.push_back(tempA);
@@ -30,9 +30,6 @@ CGAME::CGAME()
 	ani.push_back(tempA);
 	tempA = new CDINOSAUR(19, 25);
 	ani.push_back(tempA);
-
-
-
 }
 
 //void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
@@ -224,14 +221,18 @@ void CGAME::updatePosPeople(char mov)
 
 void CGAME::updatePosVehicle()
 {
-		for (int i = 0; i < veh.size(); i++)
-		{
+	
+	for (int i = 0; i < veh.size(); i++)
+	{
+		if (veh[i]->getDirection())
 			veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
-		}
+		else veh[i]->Move(veh[i]->mX - 1, veh[i]->mY);
+	}
 }
 
 void CGAME::updatePosAnimal()
 {
+	
 	for (int i = 0; i < ani.size(); i++)
 	{
 		ani[i]->Move(ani[i]->mX + 1, ani[i]->mY);

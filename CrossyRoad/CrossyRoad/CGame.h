@@ -41,7 +41,7 @@ public:
 	void resumeGame(HANDLE); //Quay lai Thread
 	void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
-	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
+	void updatePosAnimal();//Thực hiện cho CDINOSAUR & CBIRD di chuyển
 	bool getPause();
 	void setPause(bool x);
 	void addMore(CANIMAL* x);

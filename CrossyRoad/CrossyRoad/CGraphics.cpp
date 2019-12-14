@@ -5,35 +5,39 @@
 bool isRun = true;
 int KEY = NULL;
 int light = 0;
-CGAME cg;
+CGAME game;
 
 void subThread()
 {
 	while (isRun) {
-		while (!cg.getPause())
+		while (!game.getPause())
 		{
 			//srand(time(0));
 			light = rand() % 2 + 1;
+			Sleep(100);
 			if (light == 1)
 			{
-				gotoXY(75, 30);
-				//Ve Cuc mau Do o day
-				system("color E0");
-				cg.updatePosVehicle();
+				TextColor(226);
+				gotoXY(85, 30);
+				cout << (char)219 << (char)219;
+				TextColor(224);
+				game.updatePosVehicle();
 			}
 			else
 			{
-				gotoXY(75, 30);
-				//Ve Cuc Mau Xanh o day
+				TextColor(236);
+				gotoXY(85, 30);
+				cout << (char)219 << (char)219;
+				TextColor(224);
 			}
-			cg.updatePosAnimal();
-			if (cg.getPeople()->getLevel() == 5)
-				Sleep(30);		//Speed
-			else if (cg.getPeople()->getLevel() == 4)
+			game.updatePosAnimal();
+			if (game.getPeople()->getLevel() == 5)
+				Sleep(30);
+			else if (game.getPeople()->getLevel() == 4)
 				Sleep(50);
-			else if (cg.getPeople()->getLevel() == 3)
+			else if (game.getPeople()->getLevel() == 3)
 				Sleep(100);
-			else if (cg.getPeople()->getLevel() == 2)
+			else if (game.getPeople()->getLevel() == 2)
 				Sleep(150);
 			else Sleep(200);
 
@@ -46,16 +50,14 @@ void threadCheckImpact()
 {
 	while (isRun)
 	{
-		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
+		if (game.getPeople()->isImpact(game.getVehicle()) || game.getPeople()->isImpact(game.getAnimal())) {
 			isRun = false;
-			cg.setPause(true);
+			game.setPause(true);
 			PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
 			_getch();
 			exit(0);
 		}
-
 	}
-	
 }
 
 string space(int k)
@@ -152,7 +154,7 @@ void Menu()
 			cout << "NHan";
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
-			cg.startGame();
+			game.startGame();
 			//drawGame();
 			thread t(subThread);
 			thread t1(threadCheckImpact);
@@ -165,38 +167,38 @@ void Menu()
 				KEY = temp;
 				if (KEY == key_Space)
 				{
-					if (cg.getPause() == false)
-						cg.setPause(true);
-					else cg.setPause(false);
+					if (game.getPause() == false)
+						game.setPause(true);
+					else game.setPause(false);
 				}
 				if (KEY == 'l' || KEY == 'L')
 				{
-					cg.setPause(true);
+					game.setPause(true);
 					char name[50];
 					gotoXY(95, 10);
 					cout << "Save at: ";
 					cin >> name;
-					cg.saveGame(name);
+					game.saveGame(name);
 					gotoXY(95, 10);
 					cout << "                         ";
 				}
 				if (KEY == 't' || KEY == 'T')
 				{
-					cg.setPause(true);
+					game.setPause(true);
 					char namE[50];
 					gotoXY(95, 10);
 					cout << "Load at: ";
 					cin >> namE;
-					cg.loadGame(namE);
+					game.loadGame(namE);
 					gotoXY(95, 10);
 					cout << "                         ";
 				}
-				if (!cg.getPause())
+				if (!game.getPause())
 				{
 
 					if (KEY != NULL)
 					{
-						cg.updatePosPeople(KEY);
+						game.updatePosPeople(KEY);
 						KEY = NULL;
 					}
 				}
@@ -212,7 +214,7 @@ void Menu()
 			gotoXY(30, 10);
 			cout << "Load at: ";
 			cin >> namE;
-			cg.loadGame(namE);
+			game.loadGame(namE);
 			y = Y;
 		}
 		else if (y == 19 && key == key_Enter)

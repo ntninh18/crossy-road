@@ -1,16 +1,5 @@
 #include "Library.h"
 
-void CVEHICLE::draw()
-{
-	int x = mX;
-	int y = mY;
-	gotoXY(x, y);
-	cout << "   " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
-	gotoXY(x, y + 1);
-	cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
-	gotoXY(x, y + 2);
-	cout << "   O     O";
-}
 
 CVEHICLE::CVEHICLE()
 {
@@ -18,97 +7,142 @@ CVEHICLE::CVEHICLE()
 	mY = 0;
 }
 
-CVEHICLE::CVEHICLE(int x, int y)
+CVEHICLE::CVEHICLE(int x, int y, bool dir)
 {
 	mX = x;
 	mY = y;
+	direction = dir;
+}
+
+bool CVEHICLE::getDirection()
+{
+	return direction;
 }
 
 void CCAR::Move(int x, int y)
 {
+	eraseVehicle();
+	if (direction) {
+		if (x >= screenSizePlay_L - 12)
+		{
+			eraseVehicle();
+			mX = 2;
+			mY = y;
+			draw();
 
-	if (x >= screenSizePlay_L - 12)
-	{
-		eraseVehicle();
-		mX = 2;
-		mY = y;
-		return;
+			return;
+		}
+	}
+	else {
+		if (x <= 2) {
+			eraseVehicle();
+			mX = screenSizePlay_L - 12;
+			mY = y;
+			draw();
+
+			return;
+		}
 	}
 	mX = x;
 	mY = y;
 	draw();
-
 }
 /*
-   ______
-  /|_||_\\__
- |_ o___o ___\
+	   ______
+	  /|_||_\\__
+	 |_ o___o ___\
+	      ______
+	   __//_||_|\
+	 /____o___o__|
  */
 void CCAR::draw()
 {
 	int x = mX;
 	int y = mY;
-	gotoXY(x, y);
-	//cout << "   " << (char)219 << (char)219 << (char)219 << (char)219;
-	//gotoXY(x, y + 1);
-	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
-	//gotoXY(x, y + 2);
-	//cout << "   O   O";
-	cout << "   ______";
-	gotoXY(x, y + 1);
-	cout << "  /|_||_\\\\___";
-	gotoXY(x, y + 2);
-	cout << " |_ o___o ___|";
+	if (direction) {
+		gotoXY(x, y);
+		cout << "   ______";
+		gotoXY(x, y + 1);
+		cout << "  /|_||_\\\\___";
+		gotoXY(x, y + 2);
+		cout << " |_ o___o ___|";
+	}
+	else {
+		gotoXY(x, y);
+		cout << "     ______";
+		gotoXY(x, y + 1);
+		cout << "  __//_||_|\\";
+		gotoXY(x, y + 2);
+		cout << "/____o___o__|";
+	}
 }
 CCAR::CCAR() : CVEHICLE()
 {
 	type = car;
 }
-CCAR::CCAR(int x, int y) : CVEHICLE(x, y)
+CCAR::CCAR(int x, int y, bool dir) : CVEHICLE(x, y, dir)
 {
 	type = car;
 }
 void CTRUCK::Move(int x, int y)
 {
 	eraseVehicle();
-	if (x >= screenSizePlay_L - 12)
-	{
-		eraseVehicle();
-		mX = 2;
-		mY = y;
-		draw();
+	if (direction) {
+		if (x >= screenSizePlay_L - 12)
+		{
+			eraseVehicle();
+			mX = 2;
+			mY = y;
+			draw();
 
-		return;
+			return;
+		}
+	}
+	else {
+		if (x <= 2) {
+			eraseVehicle();
+			mX = screenSizePlay_L - 13;
+			mY = y;
+			draw();
+
+			return;
+		}
 	}
 	mX = x;
 	mY = y;
 	draw();
 
-	//Sleep(250);
-
 }
 
 /*
-   _________.
-  | |_| |_| |_
-  |_ o___o ___|
+	   _________ 
+	  | |_| |_| |_
+	  |_ o___o ___|
+	     _________ 
+	   _| |_| |_| |
+	  |___ o___o _|
  */
 
 void CTRUCK::draw()
 {
 	int x = mX;
 	int y = mY;
-	gotoXY(x, y);
-	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
-	//gotoXY(x, y + 1);
-	//cout << "  " << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219 << (char)219;
-	//gotoXY(x, y + 2);
-	//cout << "  O   O";
-	cout << " _________ ";
-	gotoXY(x, y + 1);
-	cout << "| |_| |_| |_" ;
-	gotoXY(x, y + 2);
-	cout << "|_ o___o ___|";
+	if (direction) {
+		gotoXY(x, y);
+		cout << " _________ ";
+		gotoXY(x, y + 1);
+		cout << "| |_| |_| |_";
+		gotoXY(x, y + 2);
+		cout << "|_ o___o ___|";
+	}
+	else {
+		gotoXY(x, y);
+		cout << "   _________";
+		gotoXY(x, y + 1);
+		cout << " _| |_| |_| |";
+		gotoXY(x, y + 2);
+		cout << "|___ o___o _|";
+	}
 }
 
 CTRUCK::CTRUCK() : CVEHICLE()
@@ -116,7 +150,7 @@ CTRUCK::CTRUCK() : CVEHICLE()
 	type = truck;
 }
 
-CTRUCK::CTRUCK(int x, int y) : CVEHICLE(x, y)
+CTRUCK::CTRUCK(int x, int y, bool dir) : CVEHICLE(x, y, dir)
 {
 	type = truck;
 }
@@ -131,9 +165,5 @@ void CVEHICLE::eraseVehicle()
 	cout << "             ";
 	gotoXY(x, y + 2);
 	cout << "              ";
-}
 
-void CVEHICLE::Move(int, int)
-{
-	return;
 }

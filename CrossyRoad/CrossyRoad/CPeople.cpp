@@ -85,17 +85,18 @@ bool CPEOPLE::isFinish()
 void CPEOPLE::increaseLevel()
 {
 	if (level <= 5) {
+		PlaySound("sound/levelup.WAV", NULL, SND_ASYNC);
 		++level;
 	}
 	if (level > 5)
 	{
-		//Neu muon co the trang tri them khi nguoi choi thang game.
-
-		cout << "congratuation"; 
+		// Neu muon co the trang tri them khi nguoi choi thang game.
+		PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+		cout << "CONGRATULATIONS!!"; 
 	}
-	//Neu muon co the trang tri them level cua nguoi choi.
+	// Neu muon co the trang tri them level cua nguoi choi.
 	gotoXY(93, 30);
-	cout <<"Level  "<< level;
+	cout <<"Level "<< level;
 }
 
 /*
@@ -139,7 +140,7 @@ void CPEOPLE::erasePeople(int x, int y)
 	gotoXY(x, y + 1);
 	cout << "       ";
 	gotoXY(x, y + 2);
-	cout << "        ";
+	cout << "       ";
 }
 void CPEOPLE::changeState(bool x)
 {
@@ -196,7 +197,7 @@ void CPEOPLE::move(int m)
 	}
 	if (key == key_Right || key == 'd')	//qua phai
 	{
-		if (mX >= screenSizePlay_L - 4)
+		if (mX >= screenSizePlay_L - 6)
 			return;
 		else {
 			erasePeople(mX, mY);
