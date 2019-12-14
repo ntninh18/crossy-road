@@ -89,10 +89,13 @@ void CPEOPLE::increaseLevel()
 	}
 	if (level > 5)
 	{
+		//Neu muon co the trang tri them khi nguoi choi thang game.
+
 		cout << "congratuation"; 
 	}
-	gotoXY(95, 20);
-	cout <<"level  "<< level;
+	//Neu muon co the trang tri them level cua nguoi choi.
+	gotoXY(93, 30);
+	cout <<"Level  "<< level;
 }
 
 /*

@@ -26,6 +26,7 @@ CVEHICLE::CVEHICLE(int x, int y)
 
 void CCAR::Move(int x, int y)
 {
+
 	if (x >= screenSizePlay_L - 12)
 	{
 		eraseVehicle();
@@ -36,6 +37,7 @@ void CCAR::Move(int x, int y)
 	mX = x;
 	mY = y;
 	draw();
+
 }
 /*
    ______
@@ -74,11 +76,14 @@ void CTRUCK::Move(int x, int y)
 		eraseVehicle();
 		mX = 2;
 		mY = y;
+		draw();
+
 		return;
 	}
 	mX = x;
 	mY = y;
 	draw();
+
 	//Sleep(250);
 
 }

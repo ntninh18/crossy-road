@@ -96,12 +96,7 @@ void CBIRD::Move(int x, int y)
 	this->mX = x;
 	this->mY = y;
 	draw();
-	/*if (x == 70)
-	{
-		gotoXY(x - 3, y - 1); cout << "      ";
-		gotoXY(x - 5, y); cout << "         ";
-		gotoXY(x - 3, y + 1); cout << "       ";
-	}*/
+
 }
 
 void CBIRD::Tell()

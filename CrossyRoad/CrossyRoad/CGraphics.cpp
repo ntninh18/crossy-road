@@ -17,14 +17,14 @@ void subThread()
 			if (light == 1)
 			{
 				gotoXY(75, 30);
-				TextColor(ColorCode_DarkRed);
-				cout << char(219);
+				//Ve Cuc mau Do o day
 				system("color E0");
 				cg.updatePosVehicle();
 			}
 			else
 			{
-
+				gotoXY(75, 30);
+				//Ve Cuc Mau Xanh o day
 			}
 			cg.updatePosAnimal();
 			if (cg.getPeople()->getLevel() == 5)
@@ -38,27 +38,8 @@ void subThread()
 			else Sleep(200);
 
 		}
-		//}
-		//Sleep(100);
+
 	}
-	//while (isRun)
-	//{
-	//	if (!cg.getPause())
-	//	{
-	//		if (KEY != NULL)
-	//		{
-	//			cg.updatePosPeople(KEY);
-	//			KEY = NULL;
-	//		}
-	//		cg.updatePosAnimal();
-	//		cg.updatePosVehicle();
-	//		if (cg.getPeople()->isImpact(cg.getVehicle()) || cg.getPeople()->isImpact(cg.getAnimal())) {
-	//			isRun = false;
-	//			cout << "Bi dung roi nha\n";
-	//		}
-	//	}
-	//	Sleep(25);
-	//}
 }
 
 void threadCheckImpact()
@@ -166,13 +147,18 @@ void Menu()
 		}
 		if (y == Y && key == key_Enter)
 		{
+
+			gotoXY(80, 25);
+			cout << "NHan";
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
 			cg.startGame();
 			//drawGame();
 			thread t(subThread);
 			thread t1(threadCheckImpact);
-
+			//gotoXY(90, 3);
+			//Viet loi huong dan cho game
+			//VD: Nhan t de load game, Nhan l de luu game, Nhan Space de pause game.
 			while (isRun)
 			{
 				int temp = _getch();
@@ -213,37 +199,11 @@ void Menu()
 						cg.updatePosPeople(KEY);
 						KEY = NULL;
 					}
-
-
 				}
 
 			}
 			t.join();
 			t1.join();
-
-
-			//while (true)
-			//{
-			//	int temp = toupper(_getch());
-			//	KEY = temp;
-
-			//}
-
-	/*		while (true) {
-				if (!cg.getPause()) {
-					if (KEY != NULL) {
-						cg.updatePosPeople(KEY);
-						KEY = NULL;
-					}
-					while (true)
-					{
-						int temp = _getch();
-						KEY = temp;
-
-					}
-				}
-			}*/
-
 		}
 		if (y == 18 && key == key_Enter)
 		{
@@ -253,9 +213,7 @@ void Menu()
 			cout << "Load at: ";
 			cin >> namE;
 			cg.loadGame(namE);
-
 			y = Y;
-			//cg.loadGame(namE);
 		}
 		else if (y == 19 && key == key_Enter)
 		{
