@@ -90,13 +90,14 @@ void CPEOPLE::increaseLevel()
 	}
 	if (level > 5)
 	{
-		// Neu muon co the trang tri them khi nguoi choi thang game.
 		PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-		cout << "CONGRATULATIONS!!"; 
+		cout << "CONGRATULATIONS!";
+		cout << "You've reached infinite mode!";
 	}
-	// Neu muon co the trang tri them level cua nguoi choi.
-	gotoXY(93, 30);
-	cout <<"Level "<< level;
+	gotoXY(112, 18);
+	TextColor(14);
+	cout << " " << level << " ";
+	TextColor(224);
 }
 
 /*

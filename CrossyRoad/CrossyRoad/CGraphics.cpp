@@ -12,23 +12,39 @@ void subThread()
 	while (isRun) {
 		while (!game.getPause())
 		{
-			//srand(time(0));
-			light = rand() % 2 + 1;
+			srand(time(NULL));
+			light = rand() % 4 + 1;
 			Sleep(100);
 			if (light == 1)
 			{
-				TextColor(226);
-				gotoXY(85, 30);
+				TextColor(236); // red light 1 2 3 5 6
+				gotoXY(83, 2);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 6);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 10);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 18);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
 				TextColor(224);
-				game.updatePosVehicle();
 			}
 			else
 			{
-				TextColor(236);
-				gotoXY(85, 30);
+				TextColor(226); // green light
+				gotoXY(83, 2);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 6);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 10);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 18);
+				cout << (char)219 << (char)219;
+				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
 				TextColor(224);
+				game.updatePosVehicle();
 			}
 			game.updatePosAnimal();
 			if (game.getPeople()->getLevel() == 5)
@@ -40,9 +56,7 @@ void subThread()
 			else if (game.getPeople()->getLevel() == 2)
 				Sleep(150);
 			else Sleep(200);
-
 		}
-
 	}
 }
 
@@ -53,7 +67,12 @@ void threadCheckImpact()
 		if (game.getPeople()->isImpact(game.getVehicle()) || game.getPeople()->isImpact(game.getAnimal())) {
 			isRun = false;
 			game.setPause(true);
-			PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
+			if (game.getPeople()->isImpact(game.getVehicle())) {
+				PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
+			}
+			else if (game.getPeople()->isImpact(game.getAnimal())) {
+				PlaySound("sound/chirp.WAV", NULL, SND_ASYNC);
+			}
 			_getch();
 			exit(0);
 		}
@@ -171,29 +190,27 @@ void Menu()
 						game.setPause(true);
 					else game.setPause(false);
 				}
-				if (KEY == 's' || KEY == 'S')
-				{
-					game.setPause(true);
-					string save_player;
-					gotoXY(95, 10);
-					cout << "Enter player: ";
-					gotoXY(110, 10); cin >> save_player;
-					game.saveGame(save_player);
-					gotoXY(95, 10);
-					cout << "Successfully saved!";
-					_getch();
-					Menu();
-				}
 				if (KEY == 'l' || KEY == 'L')
 				{
 					game.setPause(true);
+					game.setPause(true);
+					string save_player;
+					gotoXY(101, 14); cin >> save_player;
+					game.saveGame(save_player);
+					gotoXY(101, 14);
+					cout << " successfully saved! ";
+					_getch();
+					Menu();
+				}
+				if (KEY == 't' || KEY == 'T')
+				{
+					game.setPause(true);
 					string load_player;
-					gotoXY(95, 10);
-					cout << "Enter player: ";
-					cin >> load_player;
+					gotoXY(101, 14); cin >> load_player;
+					gotoXY(101, 14);
+					cout << "     game loaded!    ";
 					game.loadGame(load_player);
-					gotoXY(95, 10);
-					cout << "                         ";
+					game.setPause(false);
 				}
 				if (!game.getPause())
 				{

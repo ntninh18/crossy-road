@@ -164,6 +164,6 @@ void CVEHICLE::eraseVehicle()
 	gotoXY(x, y + 1);
 	cout << "             ";
 	gotoXY(x, y + 2);
-	cout << "              ";
+	cout << "             ";
 
 }

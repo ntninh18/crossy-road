@@ -60,35 +60,35 @@ void CGAME::drawGame()
 	cn->drawPeople(cn->mX, cn->mY);
 	int x = 1;
 	gotoXY(x, 0);
-	cout << (char)201;
+	cout << (char)218;
 	for (int i = x; i < screenSizePlay_L; i++) {
-		cout << (char)205;
+		cout << (char)196;
 	}
-	cout << (char)187;
+	cout << (char)191;
 	for (int j = 1; j < screenSizePlay_W; j++) {
 		gotoXY(x, j);
-		cout << (char)186;
+		cout << (char)179;
 	}
 	gotoXY(x, screenSizePlay_W);
-	cout << (char)200;
+	cout << (char)192;
 	for (int i = x; i <= screenSizePlay_L - x; i++) {
-		cout << (char)205;
+		cout << (char)196;
 	}
-	cout << (char)188;
+	cout << (char)217;
 	for (int j = 1; j < screenSizePlay_W; j++) {
 		gotoXY(screenSizePlay_L + 1, j);
-		cout << (char)186;
+		cout << (char)179;
 
 	}
 	for (int i = 4; i < screenSizePlay_W; i += 4) {
 		gotoXY(x, i);
-		cout << (char)199;
+		cout << (char)195;
 		for (int j = 1; j <= screenSizePlay_L - x; j++)
 			cout << (char)196;
-		cout << (char)182;
+		cout << (char)180;
 	}
+	insBoard();
 	instruction();
-
 }
 
 CGAME::~CGAME()
@@ -313,21 +313,96 @@ bool CGAME::loadGame(string sFile)
 
 void CGAME::instruction()
 {
-	int x = screenSizePlay_L + 10;
-	gotoXY(x, 5);
-	cout << "USE THE ARROW KEYS ON YOUR KEYBOARD TO MOVE";
-	gotoXY(x, 7);
-	cout << "OR";
-	gotoXY(x, 9);
-	cout << "w - W : UP\n";
-	gotoXY(x, 11);
-	cout << "s - S : DOWN";
-	gotoXY(x, 13);
-	cout << "d - D : RIGHT";
-	gotoXY(x, 15);
-	cout << "a - A : LEFT";
+	int x = screenSizePlay_L + 10, y = 1;
+
+	gotoXY(x, y);
+	cout << " CROSSY ROAD - CS202 Final Project ";
+	y += 3;
+	gotoXY(x, y);
+	cout << "[w] [^]  UP";
+	gotoXY(x, y + 2);
+	cout << "[s] [v]  DOWN";
+	gotoXY(x, y + 4);
+	cout << "[a] [<]  LEFT";
+	gotoXY(x, y + 6);
+	cout << "[d] [>]  RIGHT";
+	gotoXY(x + 17, y);
+	cout << "[L] [l]  SAVE GAME";
+	gotoXY(x + 17, y + 2);
+	cout << "[T] [t]  LOAD GAME";
+	gotoXY(x + 17, y + 4);
+	cout << "[SPACE]  PAUSE";
+
+	gotoXY(x, y + 10);
+	cout << " PLAYER  [ ____________________ ]";
+
+	gotoXY(x + 10, y + 14);
+	TextColor(14);
+	cout << " L E V E L ";
+	gotoXY(112, 18);
+	cout << " " << cn->getLevel() << " ";
+	TextColor(224);
+
+	gotoXY(x + 3, y + 18);
+	cout << "Nguyen Trung Hau  - 18125129";
+	gotoXY(x + 3, y + 20);
+	cout << "Truong Thuy Quyen - 18125110";
+	gotoXY(x + 3, y + 22);
+	cout << "Nguyen Thao Ninh  - 18125106";
+}
+
+void CGAME::insBoard()
+{
+	int x = screenSizePlay_L + 6;
+	int W = 41, H = 32;
+	gotoXY(x, 0);
+	cout << (char)218;
+	for (int i = x; i < W + x; i++) {
+		cout << (char)196;
+	}
+	cout << (char)191;
+	for (int j = 1; j < H; j++) {
+		gotoXY(x, j);
+		cout << (char)179;
+	}
+	gotoXY(x, H);
+	cout << (char)192;
+	for (int i = x; i < W + x; i++) {
+		cout << (char)196;
+	}
+	cout << (char)217;
+	for (int j = 1; j < H; j++) {
+		gotoXY(x + W + 1, j);
+		cout << (char)179;
+
+	}
+	gotoXY(x, 2);
+	cout << (char)195;
+	for (int j = 1; j < W + 1; j++)
+		cout << (char)196;
+	cout << (char)180;
+
+	gotoXY(x, 12);
+	cout << (char)195;
+	for (int j = 1; j < W + 1; j++)
+		cout << (char)196;
+	cout << (char)180;
+
+	gotoXY(x, 16);
+	cout << (char)195;
+	for (int j = 1; j < W + 1; j++)
+		cout << (char)196;
+	cout << (char)180;
+
 	gotoXY(x, 20);
-	cout << "L : SAVE GAME";
-	gotoXY(x, 22);
-	cout << "T : LOAD GAME";
+	cout << (char)195;
+	for (int j = 1; j < W + 1; j++)
+		cout << (char)196;
+	cout << (char)180;
+	
+	gotoXY(x, 28);
+	cout << (char)195;
+	for (int j = 1; j < W + 1; j++)
+		cout << (char)196;
+	cout << (char)180;
 }
