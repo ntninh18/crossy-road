@@ -1,10 +1,13 @@
 #ifndef CANIMAL_H
 #define CANIMAL_H
 #include "Library.h"
+const int bird = 3;
+const int dino = 4;
 
 class CANIMAL {
 protected:
 	int mX, mY;
+	int type;
 public:
 	virtual void Move(int, int);
 	virtual void draw();

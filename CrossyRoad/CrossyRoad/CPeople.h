@@ -22,13 +22,12 @@ public:
 	bool isImpact(const vector<CVEHICLE*>& vehicle);
 	bool isImpact(const vector<CANIMAL*>& animal);
 	bool isFinish();
-	void increaseLevel(CGAME test);
+	void increaseLevel();
 	void drawPeople(int, int);
 	bool isDead();
-	void move();
 	void erasePeople(int, int);
 	void changeState(bool);
-	void move(int m, CGAME test);
+	void move(int m);
 	friend class CGAME;
 	int getLevel();
 };

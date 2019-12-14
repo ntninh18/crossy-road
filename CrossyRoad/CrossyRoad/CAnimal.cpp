@@ -38,10 +38,12 @@ void CDINOSAUR::Tell()
 
 CDINOSAUR::CDINOSAUR() : CANIMAL()
 {
+	type = dino;
 }
 
 CDINOSAUR::CDINOSAUR(int x, int y) : CANIMAL(x, y)
 {
+	type = dino;
 }
 
 void CANIMAL::Move(int, int)
@@ -158,8 +160,10 @@ CBIRD::CBIRD()
 {
 	mX = 0;
 	mY = 0;
+	type = bird;
 }
 
 CBIRD::CBIRD(int x, int y) : CANIMAL(x, y)
 {
+	type = bird;
 }

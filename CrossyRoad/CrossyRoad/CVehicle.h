@@ -2,10 +2,12 @@
 #ifndef CVEHICLE_H
 #define CVEHICLE_H
 #include "Library.h"
-
+const int car = 1;
+const int truck = 0;
 class CVEHICLE {
 protected:
 	int mX, mY;
+	int type;
 public:
 	virtual void Move(int, int);
 	virtual void draw();

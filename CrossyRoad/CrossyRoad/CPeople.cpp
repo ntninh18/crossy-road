@@ -82,15 +82,17 @@ bool CPEOPLE::isFinish()
 	return false;
 }
 
-void CPEOPLE::increaseLevel(CGAME test)
+void CPEOPLE::increaseLevel()
 {
-	if (level < 5) {
+	if (level <= 5) {
 		++level;
 	}
-	CANIMAL* tempA = new CDINOSAUR(2, 25);
-	gotoXY(90, 21);
-	cout << level;
-	test.addMore(tempA);
+	if (level > 5)
+	{
+		cout << "congratuation"; 
+	}
+	gotoXY(95, 20);
+	cout <<"level  "<< level;
 }
 
 /*
@@ -140,7 +142,7 @@ void CPEOPLE::changeState(bool x)
 {
 	mState = x;
 }
-void CPEOPLE::move(int m, CGAME test)
+void CPEOPLE::move(int m)
 {
 	int key = m;
 	if (key == key_Up || key == 'w')	//di len
@@ -148,7 +150,7 @@ void CPEOPLE::move(int m, CGAME test)
 		if (mY < 3)
 		{
 			erasePeople(mX, mY);
-			increaseLevel(test);
+			increaseLevel();
 		
 			mX = screenSizePlay_L / 2;
 			mY = screenSizePlay_W - 3;

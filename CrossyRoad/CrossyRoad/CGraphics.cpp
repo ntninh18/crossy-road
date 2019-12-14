@@ -6,6 +6,7 @@ bool isRun = true;
 int KEY = NULL;
 int light = 0;
 CGAME cg;
+
 void subThread()
 {
 	while (isRun) {
@@ -118,7 +119,7 @@ void Text(int x, int y) {
 void Menu()
 {
 	clrscr();
-	int key;
+	int key = 999;
 	setFontSize(40);
 	resizeConsole(1080, 575);
 	char menu_text[3][100] = { "NEW GAME","LOAD GAME","SETTINGS" };
@@ -135,8 +136,8 @@ void Menu()
 		case 18: gotoXY(x - 1, Y+1); cout << menu_text[1]; break;
 		case 19: gotoXY(x, Y+2); cout << menu_text[2]; break;
 		}
-		
-		key = _getch();
+		if (key != key_Enter)
+			key = _getch();
 		if (key == key_Up)
 		{
 			gotoXY(x, y);
@@ -168,6 +169,7 @@ void Menu()
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
 			cg.startGame();
+			//drawGame();
 			thread t(subThread);
 			thread t1(threadCheckImpact);
 
@@ -181,7 +183,28 @@ void Menu()
 						cg.setPause(true);
 					else cg.setPause(false);
 				}
-
+				if (KEY == 'l' || KEY == 'L')
+				{
+					cg.setPause(true);
+					char name[50];
+					gotoXY(95, 10);
+					cout << "Save at: ";
+					cin >> name;
+					cg.saveGame(name);
+					gotoXY(95, 10);
+					cout << "                         ";
+				}
+				if (KEY == 't' || KEY == 'T')
+				{
+					cg.setPause(true);
+					char namE[50];
+					gotoXY(95, 10);
+					cout << "Load at: ";
+					cin >> namE;
+					cg.loadGame(namE);
+					gotoXY(95, 10);
+					cout << "                         ";
+				}
 				if (!cg.getPause())
 				{
 
@@ -193,6 +216,7 @@ void Menu()
 
 
 				}
+
 			}
 			t.join();
 			t1.join();
@@ -224,6 +248,14 @@ void Menu()
 		if (y == 18 && key == key_Enter)
 		{
 			PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+			char namE[50];
+			gotoXY(30, 10);
+			cout << "Load at: ";
+			cin >> namE;
+			cg.loadGame(namE);
+
+			y = Y;
+			//cg.loadGame(namE);
 		}
 		else if (y == 19 && key == key_Enter)
 		{

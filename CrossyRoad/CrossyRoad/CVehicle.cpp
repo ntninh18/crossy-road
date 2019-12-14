@@ -60,10 +60,11 @@ void CCAR::draw()
 }
 CCAR::CCAR() : CVEHICLE()
 {
-
+	type = car;
 }
 CCAR::CCAR(int x, int y) : CVEHICLE(x, y)
 {
+	type = car;
 }
 void CTRUCK::Move(int x, int y)
 {
@@ -107,11 +108,12 @@ void CTRUCK::draw()
 
 CTRUCK::CTRUCK() : CVEHICLE()
 {
-
+	type = truck;
 }
 
 CTRUCK::CTRUCK(int x, int y) : CVEHICLE(x, y)
 {
+	type = truck;
 }
 
 void CVEHICLE::eraseVehicle()

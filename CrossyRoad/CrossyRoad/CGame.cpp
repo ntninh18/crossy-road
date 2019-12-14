@@ -192,7 +192,7 @@ void CGAME::startGame()
 	normalSize();
 	//resetGame();
 	//cn.changeState(true);
-	cn = new CPEOPLE;
+	//cn = new CPEOPLE;
 
 	cn->mState = true;
 	cn->changeState(true);
@@ -213,7 +213,7 @@ void CGAME::resumeGame(HANDLE)
 void CGAME::updatePosPeople(char mov)
 {
 	int oldLevel = cn->getLevel();
-	cn->move(mov, *this);
+	cn->move(mov);
 	int j = 0;
 	if (cn->getLevel() - oldLevel != 0)
 	{
@@ -251,4 +251,60 @@ void CGAME::setPause(bool x)
 void CGAME::addMore(CANIMAL * x)
 {
 	ani.push_back(x);
+}
+
+bool CGAME::saveGame(const char * sFile)
+{
+	ofstream sF;
+	sF.open(sFile);
+	if (!sF.is_open())
+		return false;
+	sF << cn->mX << endl;
+	sF << cn->mY << endl;
+	sF << cn->level << endl;
+	for (int i = 0; i < veh.size(); i++)
+	{
+		sF << veh[i]->mX << endl; 
+		sF << veh[i]->mY << endl;
+	}
+	for(int i  = 0 ; i< ani.size();i++)
+	{
+		sF << ani[i]->mX << endl;
+		sF << ani[i]->mY << endl;
+	}
+	cout << endl;
+	sF.close();
+	return true;
+}
+
+bool CGAME::loadGame(const char * sFile)
+{
+	cn->erasePeople(cn->mX,cn->mY);
+	for (int i = 0; i < veh.size(); i++)
+	{
+		veh[i]->eraseVehicle();
+	}
+	for (int i = 0; i < ani.size(); i++)
+	{
+		ani[i]->eraseAnimal();
+	}
+	ifstream sF;
+	sF.open(sFile);
+	if (!sF.is_open())
+		return false;
+	sF >> cn->mX;
+	sF >> cn->mY;
+	sF >> cn->level;
+	for (int i = 0; i < veh.size(); i++)
+	{
+		sF >>veh[i]->mX;
+		sF >>veh[i]->mY;
+	}
+	for (int i = 0; i < ani.size(); i++)
+	{
+		sF >> ani[i]->mX;
+		sF >> ani[i]->mY;
+	}
+	sF.close();
+	return true;
 }
