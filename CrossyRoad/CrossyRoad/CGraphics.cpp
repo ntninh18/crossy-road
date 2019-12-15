@@ -4,8 +4,6 @@
 #include <ctime>
 
 
-
-
 bool isRun = true;
 int KEY = NULL;
 int light = 1;
@@ -174,10 +172,12 @@ void Menu()
 			if (y > Y+2)
 				y = Y;
 		}
-		if (y == Y && key == key_Enter)
+		if (y == Y && key == key_Enter)	//NewGame
 		{
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
+			clrscr();
+
 			game.startGame();
 			game.drawGame();
 			thread t(subThread);
@@ -192,21 +192,21 @@ void Menu()
 						game.setPause(true);
 					else game.setPause(false);
 				}
-				if (KEY == 'l' || KEY == 'L')
+				if (KEY == 'l' || KEY == 'L')			//SaveInGame
 				{
-					game.setPause(true);
 					game.setPause(true);
 					string save_player;
 					gotoXY(101, 14); cin >> save_player;
 					game.saveGame(save_player);
 					gotoXY(101, 14);
 					cout << " successfully saved! ";
+					game.resetGame();
+					isRun = false;
 					_getch();
 					Menu();
 				}
-				if (KEY == 't' || KEY == 'T')
+				if (KEY == 't' || KEY == 'T')			//LoadInGame
 				{
-					game.setPause(true);
 					game.setPause(true);
 					string load_player;
 					gotoXY(101, 14); cin >> load_player;
@@ -229,7 +229,7 @@ void Menu()
 			game.resetGame();
 			Menu();
 		}
-		if (y == 18 && key == key_Enter)
+		if (y == 18 && key == key_Enter)	//LoadGame
 		{
 			clrscr();
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
@@ -244,7 +244,7 @@ void Menu()
 			}
 			y = Y;
 		}
-		else if (y == 19 && key == key_Enter)
+		else if (y == 19 && key == key_Enter)	//Setting
 		{
 			clrscr();
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);

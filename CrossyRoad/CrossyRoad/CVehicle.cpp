@@ -36,7 +36,7 @@ void CCAR::Move(int x, int y)
 	else {
 		if (x <= 2) {
 			eraseVehicle();
-			mX = screenSizePlay_L - 12;
+			mX = screenSizePlay_L - 13;
 			mY = y;
 			draw();
 
@@ -164,6 +164,6 @@ void CVEHICLE::eraseVehicle()
 	gotoXY(x, y + 1);
 	cout << "             ";
 	gotoXY(x, y + 2);
-	cout << "             ";
+	cout << "              ";
 
 }
