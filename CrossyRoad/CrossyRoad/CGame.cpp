@@ -253,7 +253,7 @@ void CGAME::updatePosVehicle()
 		if (veh[i]->getDirection())
 			veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
 		else veh[i]->Move(veh[i]->mX - 1, veh[i]->mY);
-		if (veh[i]->mY == cn->mY && (veh[i]->mX % 10 == 0))
+		if (veh[i]->mY == cn->mY && (veh[i]->mX % 10 == 0) && cn->level <=5)
 		{
 			srand(time(0));
 			int rd = rand() + 1;
@@ -276,7 +276,7 @@ void CGAME::updatePosAnimal()
 	for (int i = 0; i < ani.size(); i++)
 	{
 		ani[i]->Move(ani[i]->mX + 1, ani[i]->mY);
-		if ((ani[i]->mX % 15 == 0) && (ani[i]->mY == cn->mY))
+		if ((ani[i]->mX % 15 == 0) && (ani[i]->mY == cn->mY) && cn->level <= 5)
 		{
 			srand(time(0));
 			int rd = rand() % 2 + 1;

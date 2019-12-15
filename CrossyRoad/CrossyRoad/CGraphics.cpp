@@ -232,6 +232,7 @@ void Menu()
 					if (KEY != NULL)
 					{
 						game.updatePosPeople(KEY);
+						Sleep(50);
 						KEY = NULL;
 					}
 				}
