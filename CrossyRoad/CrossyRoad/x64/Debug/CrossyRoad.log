@@ -1,3 +1,2 @@
-﻿  CGraphics.cpp
-c:\users\admin.desktop-ahfc17n\documents\lab\cs202\cs202-18apcs3-group04\crossyroad\crossyroad\cgraphics.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  CrossyRoad.vcxproj -> C:\Users\Admin.DESKTOP-AHFC17N\Documents\Lab\CS202\cs202-18apcs3-group04\CrossyRoad\x64\Debug\CrossyRoad.exe
+﻿  CGame.cpp
+  CrossyRoad.vcxproj -> C:\Users\ASUS\Documents\GitHub\cs202-18apcs3-group04\CrossyRoad\x64\Debug\CrossyRoad.exe

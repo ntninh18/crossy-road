@@ -78,8 +78,8 @@ void threadCheckImpact()
 			else if (game.getPeople()->isImpact(game.getAnimal())) {
 				PlaySound("sound/chirp.WAV", NULL, SND_ASYNC);
 			}
-			_getch();
-			exit(0);
+			game.resetGame();
+			_getch();	
 		}
 	}
 }
@@ -135,6 +135,7 @@ void Menu()
 	gotoXY(x, 17); cout << menu_text[0];
 	gotoXY(x - 1, 18); cout << menu_text[1];
 	gotoXY(x, 19); cout << menu_text[2];
+	isRun = true;
 	do {
 		gotoXY(x, y);
 		switch (y)
@@ -223,6 +224,8 @@ void Menu()
 			}
 			t.join();
 			t1.join();
+			game.resetGame();
+			Menu();
 		}
 		if (y == 18 && key == key_Enter)
 		{

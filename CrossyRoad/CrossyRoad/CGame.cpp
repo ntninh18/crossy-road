@@ -142,41 +142,39 @@ vector <CANIMAL*>& CGAME::getAnimal()
 
 void CGAME::resetGame()
 {
-	//cn.Right();
-	//speed = 3;	//Toc do dau game
-	////Mang Xe
-	//if (axt == nullptr && axh == nullptr && akl == nullptr && ac == nullptr)
-	//{
-	//	int truck = rand() % (MAX_CAR);
-	//	axt = new  CTRUCK[truck];
-	//	int car = rand() % (MAX_CAR - truck);
-	//	axh = new CCAR[car];
-	//	int dino = rand() % (MAX_CAR - truck - car);
-	//	akl = new CDINOSAUR[dino];
-	//	int bird = rand() % (MAX_CAR - truck - car - dino);
-	//	ac = new CBIRD[bird];
+	//cn = new CPEOPLE;
+	//CVEHICLE* temp = new CCAR(30, lane[4], true);
+	//veh.push_back(temp);
+	//temp = new CTRUCK(60, lane[0], true);
+	//veh.push_back(temp);
+	//temp = new CCAR(15, 21, false);
+	//veh.push_back(temp);
+	//temp = new CCAR(3, 9, true);
+	//veh.push_back(temp);
+	//temp = new CCAR(55, lane[4], true);
+	//veh.push_back(temp);
+	//temp = new CCAR(35, lane[2], true);
+	//veh.push_back(temp);
+	//temp = new CTRUCK(15, lane[1], false);
+	//veh.push_back(temp);
+	//temp = new CTRUCK(40, lane[1], false);
+	//veh.push_back(temp);
 
-	//	//for (int i = 0; i < MAX_CAR; i++)
-	//	//{
-	//	//	int temp = (rand() % (WIDTH_CONSOLE - MAX_CAR_LENGTH)) + 1;
-	//	//	for (int j = 0; j < MAX_CAR_LENGTH; j++)
-	//	//	{
-	//	//		axt[i].Move(temp + j, 1 + i);
-	//	//	}
-	//	//}
-	//	for (int i = 0; i < truck; i++)
-	//	{
-	//		for (int j = 0; j < MAX_CAR_LENGTH; j++)
-	//		{
-	//			Sleep(50 * (6 - speed));
-	//			axt[i].Move(1 + j, 1 );
-	//		}
-	//	}
-
-	//}
-	////currpos[0] = NULL; currpos[1] = NULL;
-	//system("cls");
-	////drawBoard(0, 0, WIDTH_CONSOLE, HEIGH_CONSOLE);
+	//temp = new CTRUCK(25, 1, true);
+	//veh.push_back(temp);
+	//CANIMAL* tempA = new CBIRD(41, 25);
+	//ani.push_back(tempA);
+	//tempA = new CDINOSAUR(19, lane[3]);
+	//ani.push_back(tempA);
+	//tempA = new CBIRD(59, lane[3]);
+	//ani.push_back(tempA);
+	//tempA = new CDINOSAUR(19, 25);
+	//ani.push_back(tempA);
+	loadGame("resetGame.txt");
+	cn->changeState(true);
+	cn->mX = screenSizePlay_L / 2;
+	cn->mY = screenSizePlay_W - 3;
+	cn->level = 1;
 }
 
 void CGAME::exitGame(HANDLE t)
