@@ -88,68 +88,38 @@ void clearScn()
 	SetConsoleCursorPosition(hOut, Position);
 }
 
-void DrawFrame(Point positionToDraw, int length, int height, char text[])
-{
-	gotoXY(positionToDraw.x - height, positionToDraw.y - height);
+//void DrawFrame(Point positionToDraw, int length, int height, char text[])
+//{
+//	gotoXY(positionToDraw.x - height, positionToDraw.y - height);
+//
+//	cout << char(218);
+//
+//	for (int i = 0; i < length; ++i)
+//		cout << char(196);
+//	cout << char(191);
+//
+//	for (int i = -height + 1; i <= height - 1; ++i) {
+//		gotoXY(positionToDraw.x - height, positionToDraw.y + i);
+//		cout << char(179);
+//	}
+//
+//	gotoXY(positionToDraw.x - height, positionToDraw.y + height);
+//	cout << char(192);
+//
+//	for (int i = 0; i < length; ++i)
+//		cout << char(196);
+//	cout << char(217);
+//
+//	for (int i = -height + 1; i <= height - 1; ++i) {
+//		gotoXY(positionToDraw.x + length + 1 - height, positionToDraw.y + i);
+//		cout << char(179);
+//	}
+//
+//	int alignTextToCenter = (length - strlen(text)) / 2 - 11;
+//	gotoXY(positionToDraw.x + alignTextToCenter, positionToDraw.y);
+//	cout << text;
+//}
 
-	cout << char(218);
-
-	for (int i = 0; i < length; ++i)
-		cout << char(196);
-	cout << char(191);
-
-	for (int i = -height + 1; i <= height - 1; ++i) {
-		gotoXY(positionToDraw.x - height, positionToDraw.y + i);
-		cout << char(179);
-	}
-
-	gotoXY(positionToDraw.x - height, positionToDraw.y + height);
-	cout << char(192);
-
-	for (int i = 0; i < length; ++i)
-		cout << char(196);
-	cout << char(217);
-
-	for (int i = -height + 1; i <= height - 1; ++i) {
-		gotoXY(positionToDraw.x + length + 1 - height, positionToDraw.y + i);
-		cout << char(179);
-	}
-
-	int alignTextToCenter = (length - strlen(text)) / 2 - 11;
-	gotoXY(positionToDraw.x + alignTextToCenter, positionToDraw.y);
-	cout << text;
-}
-
-void TargetButton(int whichButton, bool on)
-{
-	if (on) {
-		TextColor(9);
-	}
-	else {
-		TextColor(ColorCode_White);
-	}
-	Point position;
-	char text[] = "";
-	switch (whichButton) {
-	case 0:
-		position = { 45, 12 };
-		DrawFrame(position, 10, 1, text);
-		break;
-	case 1:
-		position = { 45, 15 };
-		DrawFrame(position, 10, 1, text);
-		break;
-	case 2:
-		position = { 45, 18 };
-		DrawFrame(position, 10, 1, text);
-		break;
-	case 3:
-		position = { 45, 21 };
-		DrawFrame(position, 10, 1, text);
-		break;
-	}
-	TextColor(15);
-}
 void FixConsoleWindow() {
 	HWND consoleWindow = GetConsoleWindow();
 	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);

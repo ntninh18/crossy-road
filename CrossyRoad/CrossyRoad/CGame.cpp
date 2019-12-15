@@ -1,5 +1,5 @@
 #include "CGame.h"
-
+bool theme = true;
 CGAME::CGAME()
 {
 	cn = new CPEOPLE;
@@ -56,7 +56,7 @@ CGAME::CGAME()
 
 void CGAME::drawGame()
 {
-	system("cls");
+	clrscr();
 	cn->drawPeople(cn->mX, cn->mY);
 	int x = 1;
 	gotoXY(x, 0);
@@ -89,6 +89,7 @@ void CGAME::drawGame()
 	}
 	insBoard();
 	instruction();
+	theme ? system("color E0") : system("color 0E");
 }
 
 CGAME::~CGAME()
@@ -299,8 +300,8 @@ bool CGAME::loadGame(string sFile)
 	sF >> cn->level;
 	for (int i = 0; i < veh.size(); i++)
 	{
-		sF >>veh[i]->mX;
-		sF >>veh[i]->mY;
+		sF >> veh[i]->mX;
+		sF >> veh[i]->mY;
 	}
 	for (int i = 0; i < ani.size(); i++)
 	{
@@ -314,7 +315,6 @@ bool CGAME::loadGame(string sFile)
 void CGAME::instruction()
 {
 	int x = screenSizePlay_L + 10, y = 1;
-
 	gotoXY(x, y);
 	cout << " CROSSY ROAD - CS202 Final Project ";
 	y += 3;
@@ -336,19 +336,20 @@ void CGAME::instruction()
 	gotoXY(x, y + 10);
 	cout << " PLAYER  [ ____________________ ]";
 
+	gotoXY(112, 18); cout << "       ";
 	gotoXY(x + 10, y + 14);
-	TextColor(14);
+	theme ? TextColor(Theme1_Highlight) : TextColor(Theme2_Highlight);
 	cout << " L E V E L ";
 	gotoXY(112, 18);
 	cout << " " << cn->getLevel() << " ";
-	TextColor(224);
-
+	theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 	gotoXY(x + 3, y + 18);
 	cout << "Nguyen Trung Hau  - 18125129";
 	gotoXY(x + 3, y + 20);
 	cout << "Truong Thuy Quyen - 18125110";
 	gotoXY(x + 3, y + 22);
 	cout << "Nguyen Thao Ninh  - 18125106";
+
 }
 
 void CGAME::insBoard()

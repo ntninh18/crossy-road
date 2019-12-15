@@ -96,45 +96,6 @@ void CBIRD::draw()
 	int y = mY;
 	gotoXY(x, y);
 	cout << " =(C  o)>";
-
-
-
-	//if (1) {
-	//	gotoXY(x - 3, y);
-	//	cout << " (  o)";
-	//	cout << '>';
-	//	int temp = x % 3;
-	//	if (temp % 3 == 0) {
-	//		gotoXY(x - 1, y - 1);
-	//		cout << "   /\\ ";
-	//	}
-	//	else if (temp % 3 == 1) {
-	//		gotoXY(x - 2, y);
-	//		cout << "  _";
-	//	}
-	//	else {
-	//		gotoXY(x - 1, y + 1);
-	//		cout << "   \\/ ";
-	//	}
-	//}
-	//else {
-	//	gotoXY(x - 3, y);
-	//	cout << ' <';
-	//	cout << " (o  )";
-	//	int temp = x % 3;
-	//	if (temp % 3 == 0) {
-	//		gotoXY(x - 1, y - 1);
-	//		cout << "   /\\ ";
-	//	}
-	//	else if (temp % 3 == 1) {
-	//		gotoXY(x, y);
-	//		cout << " _ ";
-	//	}
-	//	else {
-	//		gotoXY(x - 1, y + 1);
-	//		cout << "   \\/ ";
-	//	}
-	//}
 }
 
 

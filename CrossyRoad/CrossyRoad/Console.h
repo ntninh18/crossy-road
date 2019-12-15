@@ -8,6 +8,17 @@ struct Point {
 	int x, y;
 };
 
+#define Theme1_Black			224
+#define Theme1_Red				236
+#define Theme1_Highlight		14
+#define Theme1_Green			226
+
+#define Theme2_Black			14
+#define Theme2_Red				12
+#define Theme2_Highlight		224
+#define Theme2_Green			10
+
+
 #define ColorCode_Back			0
 #define ColorCode_DarkBlue		1
 #define ColorCode_DarkGreen		2

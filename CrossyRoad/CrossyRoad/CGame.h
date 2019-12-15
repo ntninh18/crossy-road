@@ -9,6 +9,7 @@
 #include "CPeople.h"
 #include "CAnimal.h"
 #include "CVehicle.h"
+#include "CGraphics.h"
 using namespace std;
 #define MAX_CAR 10
 #define MAX_SPEED 5
@@ -16,7 +17,11 @@ using namespace std;
 #define WIDTH_CONSOLE 100
 #define HEIGH_CONSOLE 20
 
+// true : yellow - default
+// false: green
+extern bool theme;
 const int lane[7] = { 1,5,9,13,17,21,25 };
+
 class CGAME {
 
 	bool pause;	//state of game: do stop?

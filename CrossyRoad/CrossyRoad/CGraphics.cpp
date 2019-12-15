@@ -2,6 +2,10 @@
 #include "CGame.h"
 #include <chrono>
 #include <ctime>
+
+
+
+
 bool isRun = true;
 int KEY = NULL;
 int light = 0;
@@ -14,10 +18,9 @@ void subThread()
 		{
 			srand(time(NULL));
 			light = rand() % 4 + 1;
-			Sleep(100);
 			if (light == 1)
 			{
-				TextColor(236); // red light 1 2 3 5 6
+				theme ? TextColor(Theme1_Red) : TextColor(Theme2_Red); // red light 1 2 3 5 6
 				gotoXY(83, 2);
 				cout << (char)219 << (char)219;
 				gotoXY(83, 6);
@@ -28,11 +31,11 @@ void subThread()
 				cout << (char)219 << (char)219;
 				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
-				TextColor(224);
+				theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 			}
 			else
 			{
-				TextColor(226); // green light
+				theme ? TextColor(Theme1_Green) : TextColor(Theme2_Green); // green light
 				gotoXY(83, 2);
 				cout << (char)219 << (char)219;
 				gotoXY(83, 6);
@@ -43,7 +46,7 @@ void subThread()
 				cout << (char)219 << (char)219;
 				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
-				TextColor(224);
+				theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 				game.updatePosVehicle();
 			}
 			game.updatePosAnimal();
@@ -55,7 +58,9 @@ void subThread()
 				Sleep(100);
 			else if (game.getPeople()->getLevel() == 2)
 				Sleep(150);
-			else Sleep(200);
+			else if (game.getPeople()->getLevel() == 1)
+				Sleep(200);
+			else Sleep(20);
 		}
 	}
 }
@@ -168,18 +173,12 @@ void Menu()
 		}
 		if (y == Y && key == key_Enter)
 		{
-
-			gotoXY(80, 25);
-			cout << "NHan";
 			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			//Test();
 			game.startGame();
-			//drawGame();
+			game.drawGame();
 			thread t(subThread);
 			thread t1(threadCheckImpact);
-			//gotoXY(90, 3);
-			//Viet loi huong dan cho game
-			//VD: Nhan t de load game, Nhan l de luu game, Nhan Space de pause game.
 			while (isRun)
 			{
 				int temp = _getch();
@@ -205,11 +204,12 @@ void Menu()
 				if (KEY == 't' || KEY == 'T')
 				{
 					game.setPause(true);
+					game.setPause(true);
 					string load_player;
 					gotoXY(101, 14); cin >> load_player;
-					gotoXY(101, 14);
-					cout << "     game loaded!    ";
 					game.loadGame(load_player);
+					gotoXY(101, 14);
+					cout << "    player loaded!   ";
 					game.setPause(false);
 				}
 				if (!game.getPause())
@@ -227,18 +227,39 @@ void Menu()
 		if (y == 18 && key == key_Enter)
 		{
 			clrscr();
+			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
 			CDINOSAUR a(13, 5);
 			string load_player;
 			gotoXY(20, 5);
 			a.draw();
-			cout << "Enter player: ";
+			cout << " Enter player: ";
 			cin >> load_player;
-			game.loadGame(load_player);
+			if (!game.loadGame(load_player)) {
+				gotoXY(24, 5); cout << "Unable to find player! Press any key to type again.";
+			}
 			y = Y;
 		}
 		else if (y == 19 && key == key_Enter)
 		{
-			PlaySound("sound/crash.WAV", NULL, SND_ASYNC);
+			clrscr();
+			PlaySound("sound/click.WAV", NULL, SND_ASYNC);
+			CDINOSAUR a(8, 5);
+			a.draw();
+			char opt = 'y';
+			cout << " Change to dark theme? [y]/[n] ";
+			cin >> opt;
+			if (opt == 'y' || opt == 'Y') {
+				theme = false;
+				system("color 0E");
+				cout << "Theme changed!";
+			}
+			else {
+				theme = true;
+				system("color E0");
+				cout << "Default theme applied!";
+			}
+			Menu();
+			y = Y;
 		}
 	} while (true);
 }

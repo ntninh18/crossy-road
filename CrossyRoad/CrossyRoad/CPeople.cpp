@@ -88,16 +88,20 @@ void CPEOPLE::increaseLevel()
 		PlaySound("sound/levelup.WAV", NULL, SND_ASYNC);
 		++level;
 	}
-	if (level > 5)
+	if (level == 6)
 	{
 		PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-		cout << "CONGRATULATIONS!";
-		cout << "You've reached infinite mode!";
+		gotoXY(100,30); cout <<  "CONGRATULATIONS!";
+		gotoXY(94, 31); cout << "You've reached infinite mode!";
+		++level;
+	}
+	if (level > 6) {
+		++level;
 	}
 	gotoXY(112, 18);
-	TextColor(14);
+	theme ? TextColor(Theme1_Highlight) : TextColor(Theme2_Highlight);
 	cout << " " << level << " ";
-	TextColor(224);
+	theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 }
 
 /*
@@ -123,14 +127,14 @@ void CPEOPLE::drawPeople(int x, int y)
 		cout << " /___\\";
 	}
 	else {
-		TextColor(236);
+		theme ? TextColor(Theme1_Red) : TextColor(Theme2_Red);
 		gotoXY(x, y);
 		cout << "  ___";
 		gotoXY(x, y + 1);
 		cout << " (x-x)";
 		gotoXY(x, y + 2);
 		cout << " /___\\";
-		TextColor(214);
+		theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 	}
 }
 

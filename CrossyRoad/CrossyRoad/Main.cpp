@@ -1,5 +1,6 @@
 #include "Library.h"
 #include "CGame.h"
+
 int main() {
 	system("color E0");
 	SetConsoleTitle("Crossy Road - CS202 Project");

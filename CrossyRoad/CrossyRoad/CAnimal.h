@@ -1,6 +1,7 @@
 #ifndef CANIMAL_H
 #define CANIMAL_H
 #include "Library.h"
+
 const int bird = 3;
 const int dino = 4;
 
