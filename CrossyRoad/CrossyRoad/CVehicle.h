@@ -18,6 +18,7 @@ public:
 	CVEHICLE(int x, int y, bool dir);
 	bool getDirection();
 	void eraseVehicle();
+	void setdata(int x, int y, bool d);
 };
 class CTRUCK : public CVEHICLE {
 public:

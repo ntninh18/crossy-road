@@ -71,6 +71,12 @@ void CANIMAL::eraseAnimal()
 	cout << "           ";
 }
 
+void CANIMAL::setData(int x, int y)
+{
+	mX = x;
+	mY = y;
+}
+
 void CBIRD::Move(int x, int y)
 {
 	if (x >= screenSizePlay_L - 10)

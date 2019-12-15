@@ -167,3 +167,10 @@ void CVEHICLE::eraseVehicle()
 	cout << "              ";
 
 }
+
+void CVEHICLE::setdata(int x, int y, bool d)
+{
+	mX = x;
+	mY = y;
+	direction = d;
+}

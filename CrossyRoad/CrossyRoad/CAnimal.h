@@ -18,6 +18,7 @@ public:
 	CANIMAL();
 	CANIMAL(int x, int y);
 	void eraseAnimal();
+	void setData(int x, int y);
 };
 class CDINOSAUR : public CANIMAL {
 public:

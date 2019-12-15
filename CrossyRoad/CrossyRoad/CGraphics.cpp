@@ -211,6 +211,7 @@ void Menu()
 					string load_player;
 					gotoXY(101, 14); cin >> load_player;
 					game.loadGame(load_player);
+					light = 1;
 					gotoXY(101, 14);
 					cout << "    player loaded!   ";
 					game.setPause(false);
