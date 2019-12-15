@@ -8,7 +8,7 @@
 
 bool isRun = true;
 int KEY = NULL;
-int light = 0;
+int light = 1;
 CGAME game;
 
 void subThread()
@@ -16,8 +16,6 @@ void subThread()
 	while (isRun) {
 		while (!game.getPause())
 		{
-			srand(time(NULL));
-			light = rand() % 4 + 1;
 			if (light == 1)
 			{
 				theme ? TextColor(Theme1_Red) : TextColor(Theme2_Red); // red light 1 2 3 5 6
@@ -32,6 +30,8 @@ void subThread()
 				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
 				theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
+				srand(time(NULL));
+				light = rand() % 4 + 1;
 			}
 			else
 			{
@@ -48,6 +48,8 @@ void subThread()
 				cout << (char)219 << (char)219;
 				theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 				game.updatePosVehicle();
+				srand(time(NULL));
+				light = rand() % 4 + 1;
 			}
 			game.updatePosAnimal();
 			if (game.getPeople()->getLevel() == 5)
