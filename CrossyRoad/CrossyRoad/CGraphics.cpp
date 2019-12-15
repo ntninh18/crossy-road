@@ -45,7 +45,9 @@ void subThread()
 				gotoXY(83, 22);
 				cout << (char)219 << (char)219;
 				theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
+				
 				game.updatePosVehicle();
+				
 				srand(time(NULL));
 				light = rand() % 4 + 1;
 			}
@@ -215,6 +217,15 @@ void Menu()
 					gotoXY(101, 14);
 					cout << "    player loaded!   ";
 					game.setPause(false);
+				}
+				if (KEY == 27)	//Phím esc
+				{
+					game.setPause(true);
+					light = 1;
+					isRun = false;
+					game.resetGame();
+					Sleep(50);
+					Menu();
 				}
 				if (!game.getPause())
 				{

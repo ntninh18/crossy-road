@@ -253,7 +253,21 @@ void CGAME::updatePosVehicle()
 		if (veh[i]->getDirection())
 			veh[i]->Move(veh[i]->mX + 1, veh[i]->mY);
 		else veh[i]->Move(veh[i]->mX - 1, veh[i]->mY);
+		if (veh[i]->mY == cn->mY && (veh[i]->mX % 10 == 0))
+		{
+			srand(time(0));
+			int rd = rand() + 1;
+			if(rd % 4 == 0)
+				PlaySound("sound/horn_1.WAV", NULL, SND_ASYNC);
+			else if (rd % 2 == 0)
+				PlaySound("sound/horn_3.WAV", NULL, SND_ASYNC);
+			else
+				PlaySound("sound/horn_4.WAV", NULL, SND_ASYNC);
+
+		}
+		
 	}
+
 }
 
 void CGAME::updatePosAnimal()
@@ -262,6 +276,14 @@ void CGAME::updatePosAnimal()
 	for (int i = 0; i < ani.size(); i++)
 	{
 		ani[i]->Move(ani[i]->mX + 1, ani[i]->mY);
+		if ((ani[i]->mX % 15 == 0) && (ani[i]->mY == cn->mY))
+		{
+			srand(time(0));
+			int rd = rand() % 2 + 1;
+			if (rd % 2 == 0)
+				PlaySound("sound/dino.WAV", NULL, SND_ASYNC);
+
+		}
 	}
 }
 
