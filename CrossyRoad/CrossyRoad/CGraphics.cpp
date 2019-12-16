@@ -80,6 +80,7 @@ void threadCheckImpact()
 			else if (game.getPeople()->isImpact(game.getAnimal())) {
 				PlaySound("sound/chirp.WAV", NULL, SND_ASYNC);
 			}
+			gameOver();
 			game.resetGame();
 			_getch();	
 		}
@@ -281,6 +282,15 @@ void Menu()
 			y = Y;
 		}
 	} while (true);
+}
+
+void gameOver()
+{
+	clrscr();
+	setFontSize(70);
+	resizeConsole(1080, 575);
+	gotoXY(4, 3); cout << "  oh no you lose :(";
+	PlaySound("sound/game_over.WAV", NULL, SND_ASYNC);
 }
 
 

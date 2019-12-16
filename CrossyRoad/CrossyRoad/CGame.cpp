@@ -32,28 +32,6 @@ CGAME::CGAME()
 	ani.push_back(tempA);
 }
 
-//void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
-//{
-	//gotoXY(x, y);
-	//cout << "X";
-	//for (int i = 1; i < width; i++)
-	//	cout << "X";
-	//cout << "X";
-	//gotoXY(x, height + y);
-	//cout << "X";
-	//for (int i = 1; i < height; i++)
-	//	cout << "X";
-	//cout << "X";
-	//for (int i = y + 1; i < height + y; i++)
-	//{
-	//	gotoXY(x, i);
-	//	cout << "X";
-	//	gotoXY(x + width, i);
-	//	cout << "X";
-	//}
-	//gotoXY(curPosX, curPosY);
-//}
-
 void CGAME::drawGame()
 {
 	clrscr();

@@ -10,6 +10,7 @@ string space(int k);
 string block(int k);
 void Text(int x, int y);
 void Menu();
+void gameOver();
 //void Test();
 void normalSize();
 #endif // !GRAPHIC_H_
