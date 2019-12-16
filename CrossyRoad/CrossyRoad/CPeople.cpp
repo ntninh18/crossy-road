@@ -7,42 +7,8 @@ CPEOPLE::CPEOPLE()
 	level = 1;
 }
 
-void CPEOPLE::Up()
-{
-	mY -= 4;
-	if (mY < 0)
-		mY = 0;
-}
-void CPEOPLE::Left()
-{
-	mX -= 1;
-	if (mX < 5)
-		mX = 5;
-}
-void CPEOPLE::Right()
-{
-	mX += 1;
-	if (mY > screenSizePlay_L)
-		mX = screenSizePlay_L;
-}
-void CPEOPLE::Down()
-{
-	mY += 4;
-	if (mY > screenSizePlay_W - 3)
-		mX = screenSizePlay_W - 3;
-}
-
 bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 {
-	//if (mY != vehicle[0].mY)
-	//	return false;
-	//for (int i = 0; i < level; i++) {
-	//	if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
-	//		mState = false;
-	//		return true;
-	//	}
-	//}
-	//return false;
 	for (int i =0; i < vehicle.size(); i++)
 	{
 		if ((vehicle[i]->mX-4 <= mX && (mX <= (vehicle[i]->mX + 12))) && vehicle[i]->mY == mY) {
@@ -55,17 +21,7 @@ bool CPEOPLE::isImpact(const vector<CVEHICLE *>& vehicle)
 
 bool CPEOPLE::isImpact(const vector<CANIMAL *>&animal)
 {
-	//if (mY != animal[0].mY)
-	//	return false;
-	//for (int i = 0; i < level; i++) {
-	//	if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
-	//		mState = false;
-	//		return true;
-	//	}
-	//}
-	//return false;
-
-	for (int i = 0; i < animal.size(); i++)				//coi lai ham nay
+	for (int i = 0; i < animal.size(); i++)				
 	{
 		if ((animal[i]->mX-4 <= mX) && (mX <= animal[i]->mX + 7) && animal[i]->mY == mY) {
 			mState = false;
@@ -111,13 +67,6 @@ void CPEOPLE::increaseLevel()
 */
 void CPEOPLE::drawPeople(int x, int y)
 {
-	//gotoXY(x, y);
-	//cout << "  ()";
-	//gotoXY(x, y + 1);
-	//cout << " /||\\";
-	//gotoXY(x, y + 2);
-	//cout << "  /\\";
-
 	if (!isDead()) {
 		gotoXY(x, y);
 		cout << "  ___";
@@ -212,7 +161,6 @@ void CPEOPLE::move(int m)
 			return;
 		}
 	}
-	// if (key == key_Esc) Menu();
 	else return;
 }
 int CPEOPLE::getLevel()

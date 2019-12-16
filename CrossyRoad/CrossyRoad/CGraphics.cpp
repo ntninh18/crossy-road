@@ -284,16 +284,16 @@ void Menu()
 }
 
 
-void Test() {
-	clrscr();
-	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-	drawScreen();
-	CPEOPLE a;
-	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
-	//a.move();
-	CGAME m;
-	m.resetGame();
-}
+//void Test() {
+//	clrscr();
+//	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+//	drawScreen();
+//	CPEOPLE a;
+//	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
+//	//a.move();
+//	CGAME m;
+//	m.resetGame();
+//}
 void normalSize() {
 	setFontSize(16);
 	resizeConsole(1080, 575);
