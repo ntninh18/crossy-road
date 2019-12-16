@@ -12,7 +12,7 @@ CGAME game;
 void subThread()
 {
 	while (isRun) {
-		while (!game.getPause())
+		while (!game.getPause() && KEY == NULL)
 		{
 			if (light == 1)
 			{
@@ -186,7 +186,8 @@ void Menu()
 			thread t1(threadCheckImpact);
 			while (isRun)
 			{
-				int temp = _getch();
+
+				int temp = toupper(_getch());
 				KEY = temp;
 				if (KEY == key_Space)
 				{
@@ -232,8 +233,8 @@ void Menu()
 					if (KEY != NULL)
 					{
 						game.updatePosPeople(KEY);
-						Sleep(50);
 						KEY = NULL;
+						Sleep(20);
 					}
 				}
 			}
