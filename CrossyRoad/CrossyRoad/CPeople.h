@@ -1,7 +1,6 @@
 ﻿#pragma once
 #ifndef CPEOPLE_H
 #define CPEOPLE_H
-//#include"Library.h"
 #include "CGame.h"
 #include "CAnimal.h"
 #include "CVehicle.h"
@@ -11,14 +10,10 @@ const int screenSizePlay_L = 80;
 
 class CPEOPLE {
 	int mX, mY;
-	bool mState; //Trạng thái sống chết
+	bool mState; 
 	int level;
 public:
 	CPEOPLE();
-	void Up();
-	void Left();
-	void Right();
-	void Down();
 	bool isImpact(const vector<CVEHICLE*>& vehicle);
 	bool isImpact(const vector<CANIMAL*>& animal);
 	bool isFinish();

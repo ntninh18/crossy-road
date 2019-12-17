@@ -32,28 +32,6 @@ CGAME::CGAME()
 	ani.push_back(tempA);
 }
 
-//void CGAME::drawBoard(int x, int y, int width, int height, int curPosX, int curPosY)
-//{
-	//gotoXY(x, y);
-	//cout << "X";
-	//for (int i = 1; i < width; i++)
-	//	cout << "X";
-	//cout << "X";
-	//gotoXY(x, height + y);
-	//cout << "X";
-	//for (int i = 1; i < height; i++)
-	//	cout << "X";
-	//cout << "X";
-	//for (int i = y + 1; i < height + y; i++)
-	//{
-	//	gotoXY(x, i);
-	//	cout << "X";
-	//	gotoXY(x + width, i);
-	//	cout << "X";
-	//}
-	//gotoXY(curPosX, curPosY);
-//}
-
 void CGAME::drawGame()
 {
 	clrscr();
@@ -89,7 +67,6 @@ void CGAME::drawGame()
 	}
 	insBoard();
 	instruction();
-	theme ? system("color E0") : system("color 0E");
 }
 
 CGAME::~CGAME()
@@ -378,16 +355,24 @@ void CGAME::instruction()
 	cout << "[T] [t]  LOAD GAME";
 	gotoXY(x + 17, y + 4);
 	cout << "[SPACE]  PAUSE";
+	gotoXY(x + 17, y + 6);
+	cout << "[ ESC ]  BACK";
 
 	gotoXY(x, y + 10);
 	cout << " PLAYER  [ ____________________ ]";
 
 	gotoXY(112, 18); cout << "       ";
-	gotoXY(x + 10, y + 14);
+	
 	theme ? TextColor(Theme1_Highlight) : TextColor(Theme2_Highlight);
-	cout << " L E V E L ";
-	gotoXY(112, 18);
-	cout << " " << cn->getLevel() << " ";
+	if (cn->getLevel() <= 5) {
+		gotoXY(x + 10, y + 14);
+		cout << " L E V E L ";
+		gotoXY(112, 18);
+		cout << " " << cn->getLevel() << " ";
+	}
+	else {
+		gotoXY(100, 18); cout << " INFINITE MODE ";
+	}
 	theme ? TextColor(Theme1_Black) : TextColor(Theme2_Black);
 	gotoXY(x + 3, y + 18);
 	cout << "Nguyen Trung Hau  - 18125129";
@@ -395,7 +380,6 @@ void CGAME::instruction()
 	cout << "Truong Thuy Quyen - 18125110";
 	gotoXY(x + 3, y + 22);
 	cout << "Nguyen Thao Ninh  - 18125106";
-
 }
 
 void CGAME::insBoard()

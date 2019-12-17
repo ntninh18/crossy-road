@@ -7,15 +7,6 @@ int main() {
 	FixConsoleWindow();
 	normalSize();
 	Text(15, 5);
-	// Menu();
-
-	//CGAME cg;
-	//while (1)
-	//{
-	//	cg.updatePosVehicle();
-	//	Sleep(25);
-	//	cg.updatePosAnimal();
-	//}
 	_getch();
 	Menu();
 	return 0;

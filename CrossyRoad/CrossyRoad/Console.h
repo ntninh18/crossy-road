@@ -4,9 +4,7 @@
 #ifndef _console_header
 #define _console_header
 
-struct Point {
-	int x, y;
-};
+
 
 #define Theme1_Black			224
 #define Theme1_Red				236
@@ -73,7 +71,7 @@ void TextColor(int color);
 
 void clearScn();
 
-void DrawFrame(Point positionToDraw, int length, int height, char text[]);
+//void DrawFrame(Point positionToDraw, int length, int height, char text[]);
 void FixConsoleWindow();
 void resizeConsole(int width, int height);
 void setFontSize(int FontSize);

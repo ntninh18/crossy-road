@@ -88,37 +88,6 @@ void clearScn()
 	SetConsoleCursorPosition(hOut, Position);
 }
 
-//void DrawFrame(Point positionToDraw, int length, int height, char text[])
-//{
-//	gotoXY(positionToDraw.x - height, positionToDraw.y - height);
-//
-//	cout << char(218);
-//
-//	for (int i = 0; i < length; ++i)
-//		cout << char(196);
-//	cout << char(191);
-//
-//	for (int i = -height + 1; i <= height - 1; ++i) {
-//		gotoXY(positionToDraw.x - height, positionToDraw.y + i);
-//		cout << char(179);
-//	}
-//
-//	gotoXY(positionToDraw.x - height, positionToDraw.y + height);
-//	cout << char(192);
-//
-//	for (int i = 0; i < length; ++i)
-//		cout << char(196);
-//	cout << char(217);
-//
-//	for (int i = -height + 1; i <= height - 1; ++i) {
-//		gotoXY(positionToDraw.x + length + 1 - height, positionToDraw.y + i);
-//		cout << char(179);
-//	}
-//
-//	int alignTextToCenter = (length - strlen(text)) / 2 - 11;
-//	gotoXY(positionToDraw.x + alignTextToCenter, positionToDraw.y);
-//	cout << text;
-//}
 
 void FixConsoleWindow() {
 	HWND consoleWindow = GetConsoleWindow();

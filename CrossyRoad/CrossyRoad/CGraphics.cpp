@@ -12,7 +12,7 @@ CGAME game;
 void subThread()
 {
 	while (isRun) {
-		while (!game.getPause())
+		while (!game.getPause() && KEY == NULL)
 		{
 			if (light == 1)
 			{
@@ -80,6 +80,7 @@ void threadCheckImpact()
 			else if (game.getPeople()->isImpact(game.getAnimal())) {
 				PlaySound("sound/chirp.WAV", NULL, SND_ASYNC);
 			}
+			gameOver();
 			game.resetGame();
 			_getch();	
 		}
@@ -186,7 +187,8 @@ void Menu()
 			thread t1(threadCheckImpact);
 			while (isRun)
 			{
-				int temp = _getch();
+
+				int temp = toupper(_getch());
 				KEY = temp;
 				if (KEY == key_Space)
 				{
@@ -232,8 +234,8 @@ void Menu()
 					if (KEY != NULL)
 					{
 						game.updatePosPeople(KEY);
-						Sleep(50);
 						KEY = NULL;
+						Sleep(20);
 					}
 				}
 			}
@@ -282,17 +284,26 @@ void Menu()
 	} while (true);
 }
 
-
-void Test() {
+void gameOver()
+{
 	clrscr();
-	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
-	drawScreen();
-	CPEOPLE a;
-	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
-	//a.move();
-	CGAME m;
-	m.resetGame();
+	setFontSize(70);
+	resizeConsole(1080, 575);
+	gotoXY(4, 3); cout << "  oh no you lose :(";
+	PlaySound("sound/game_over.WAV", NULL, SND_ASYNC);
 }
+
+
+//void Test() {
+//	clrscr();
+//	PlaySound("sound/bgm.WAV", NULL, SND_ASYNC);
+//	drawScreen();
+//	CPEOPLE a;
+//	//a.drawPeople(screenSizePlay_L / 2-1, screenSizePlay_W-3);
+//	//a.move();
+//	CGAME m;
+//	m.resetGame();
+//}
 void normalSize() {
 	setFontSize(16);
 	resizeConsole(1080, 575);
